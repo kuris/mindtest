@@ -5,6 +5,7 @@
 (function () {
   'use strict';
 
+  if (window.MINDTEST_PATCH_TEST_DATA) { window.MINDTEST_PATCH_TEST_DATA(); }
   var T = window.TEST_DATA;
   if (!T) { return; }
 
@@ -65,7 +66,9 @@
 
     var res = T.results[key];
     if (!res) { return; }
-    location.href = 'result/' + T.resultPrefix + res.slug + '.html';
+    var langParam = new URLSearchParams(location.search).get('lang');
+    var query = langParam ? '?lang=' + encodeURIComponent(langParam) : '';
+    location.href = 'result/' + T.resultPrefix + res.slug + '.html' + query;
   }
 
   elBack.addEventListener('click', back);

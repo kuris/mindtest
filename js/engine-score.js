@@ -6,6 +6,7 @@
 (function () {
   'use strict';
 
+  if (window.MINDTEST_PATCH_TEST_DATA) { window.MINDTEST_PATCH_TEST_DATA(); }
   var T = window.TEST_DATA;
   if (!T) { return; }
 
@@ -59,7 +60,9 @@
     }
     if (!grade) { grade = T.grades[T.grades.length - 1]; }
 
-    location.href = 'result/' + T.resultPrefix + grade.slug + '.html?p=' + pct;
+    var langParam = new URLSearchParams(location.search).get('lang');
+    var langQuery = langParam ? '&lang=' + encodeURIComponent(langParam) : '';
+    location.href = 'result/' + T.resultPrefix + grade.slug + '.html?p=' + pct + langQuery;
   }
 
   elBack.addEventListener('click', back);

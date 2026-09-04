@@ -6,6 +6,7 @@
 (function () {
   'use strict';
 
+  if (window.MINDTEST_PATCH_TEST_DATA) { window.MINDTEST_PATCH_TEST_DATA(); }
   var T = window.TEST_DATA;
   if (!T) { return; }
 
@@ -62,7 +63,9 @@
     }
     if (!level) { level = T.levels[0]; }
 
-    location.href = 'result/' + T.resultPrefix + level.slug + '.html?c=' + correct;
+    var langParam = new URLSearchParams(location.search).get('lang');
+    var langQuery = langParam ? '&lang=' + encodeURIComponent(langParam) : '';
+    location.href = 'result/' + T.resultPrefix + level.slug + '.html?c=' + correct + langQuery;
   }
 
   elBack.addEventListener('click', back);
