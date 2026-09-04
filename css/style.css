@@ -386,6 +386,97 @@ a { color: var(--key-dark); }
 }
 .btn-primary:hover { background: var(--key-dark); border-color: var(--key-dark); }
 
+/* ---------- 스마트 바이럴 공유 박스 ---------- */
+.smart-share-box {
+  margin: 20px 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-share-hero {
+  position: relative;
+  width: 100%;
+  min-height: 64px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--key) 0%, var(--key-dark) 100%);
+  border: none;
+  border-radius: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(224, 85, 85, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+.btn-share-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(224, 85, 85, 0.38);
+}
+.btn-share-hero:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.share-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-align: center;
+}
+.share-hero-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.share-hero-sub {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.9;
+  letter-spacing: -0.01em;
+}
+
+.btn-share-sub-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn-share-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 48px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+.btn-share-sub:hover {
+  border-color: var(--key);
+  background: var(--key-soft);
+  color: var(--key-dark);
+  transform: translateY(-1px);
+}
+.btn-share-sub:active {
+  transform: scale(0.98);
+}
+
+.smart-share-tip {
+  margin: 4px 0 8px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
 .toast {
   position: fixed;
   left: 50%;
