@@ -28,16 +28,9 @@
 <!-- 구글 애드센스 (자동 광고). 이 사이트는 일반 대상이므로 tfat 파라미터를 쓰지 않는다. -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3321070604000141" crossorigin="anonymous"></script>
 
-<!-- Vercel Web Analytics (file:// 로 열었을 때 404 나지 않도록 프로토콜 확인 후 주입) -->
-<script>
-(function () {
-  if (location.protocol === 'file:') return;
-  var s = document.createElement('script');
-  s.defer = true;
-  s.src = '/_vercel/insights/script.js';
-  document.head.appendChild(s);
-})();
-</script>
+<!-- Vercel Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="wrap">

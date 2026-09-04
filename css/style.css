@@ -29,6 +29,15 @@ body[data-theme="kkondae"] {
 body[data-theme="vocab"] {
   --key: #3f9e73; --key-dark: #2e7a58; --key-soft: #e4f4ec; --bg: #f3faf6;
 }
+body[data-theme="burnout"] {
+  --key: #7b5ea7; --key-dark: #5c4184; --key-soft: #ede8f7; --bg: #f7f4fc;
+}
+body[data-theme="digital"] {
+  --key: #2196b0; --key-dark: #16738a; --key-soft: #ddf1f6; --bg: #f2fafc;
+}
+body[data-theme="tmi"] {
+  --key: #e8924a; --key-dark: #c06d28; --key-soft: #fdeede; --bg: #fff9f4;
+}
 
 * { box-sizing: border-box; }
 
