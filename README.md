@@ -55,8 +55,8 @@ node tools/build.js      # HTML 31개 + sitemap.xml 재생성
 
 1. ✅ Vercel Import 완료 (**Framework Preset: Other**, 빌드 명령 없음, 출력 디렉터리 루트)
 2. ✅ `https://mindtestkorea.vercel.app` 배포 확인
-3. Vercel 프로젝트 → Settings → Domains 에 `mindtest.chatgpts.kr` 추가
-4. 가비아 DNS에 CNAME 추가 (아래 참고)
+3. ✅ Vercel Settings → Domains 에 `mindtest.chatgpts.kr` 연결 완료
+4. ✅ 가비아 DNS CNAME 추가 완료 (`mindtest` → `b26a709302b2b2ec.vercel-dns-017.com.`)
 5. Settings → Analytics 에서 **Web Analytics 활성화** (스크립트 태그는 이미 전 페이지에 들어있음)
 
 ### 가비아 DNS 설정
@@ -85,10 +85,12 @@ curl -sI https://mindtest.chatgpts.kr | head -1
 Vercel Domains 화면의 상태가 `Valid Configuration` 으로 바뀌고 HTTPS 인증서가
 자동 발급되면 끝이다.
 
-### DNS 연결이 끝난 뒤에 할 것
+### vercel.app 중복 노출 차단 (적용 완료)
 
 `mindtestkorea.vercel.app` 으로도 사이트가 그대로 열리면 검색엔진 입장에서 같은 콘텐츠가 두
-주소에 존재하게 된다. DNS가 정상 동작하는 걸 확인한 **다음에** `vercel.json` 에 아래를 추가한다.
+주소에 존재하게 된다. DNS 연결을 확인한 뒤 `vercel.json` 에 아래 리다이렉트를 넣었다.
+`ads.txt` / `robots.txt` / `sitemap.xml` 은 크롤러가 vercel.app 호스트에서도 읽을 수 있도록
+리다이렉트 대상에서 제외한다.
 
 ```json
 "redirects": [
@@ -101,8 +103,8 @@ Vercel Domains 화면의 상태가 `Valid Configuration` 으로 바뀌고 HTTPS 
 ]
 ```
 
-⚠️ DNS 연결 **전에** 넣으면 `mindtestkorea.vercel.app` 이 아직 뜨지도 않는 주소로
-리다이렉트되어 사이트 전체가 접속 불가가 된다. 순서를 반드시 지킬 것.
+⚠️ 이 리다이렉트는 DNS 연결 **전에** 넣으면 안 된다. 아직 뜨지도 않는 주소로 리다이렉트되어
+사이트 전체가 접속 불가가 된다. 새 도메인을 붙일 때도 순서를 지킬 것.
 
 ## 애드센스
 
