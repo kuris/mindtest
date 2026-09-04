@@ -3,7 +3,8 @@
 모바일 우선 **정적 심리테스트 사이트**. 백엔드 없음, 프레임워크 없음, 빌드 단계 없음.
 바닐라 HTML/CSS/JS 파일을 Vercel에 그대로 올리면 끝난다.
 
-- 배포 도메인: `https://mindtest.chatgpts.kr` (첫 배포는 `mindtest.vercel.app` → DNS 연결 후 전환)
+- 배포 도메인: `https://mindtest.chatgpts.kr`
+- Vercel 프로젝트: `mindtestkorea` → 임시 주소 `https://mindtestkorea.vercel.app`
 - 자매 사이트: [한자야 놀자!](https://hanja.chatgpts.kr/) (`kuris/playhanja`)
 
 ## 지금 들어있는 것
@@ -52,30 +53,56 @@ node tools/build.js      # HTML 31개 + sitemap.xml 재생성
 
 ## 배포 (Vercel)
 
-1. Vercel에서 이 repo를 Import → **Framework Preset: Other**, 빌드 명령 없음, 출력 디렉터리 루트
-2. 배포되면 `mindtest.vercel.app` 으로 먼저 확인
+1. ✅ Vercel Import 완료 (**Framework Preset: Other**, 빌드 명령 없음, 출력 디렉터리 루트)
+2. ✅ `https://mindtestkorea.vercel.app` 배포 확인
 3. Vercel 프로젝트 → Settings → Domains 에 `mindtest.chatgpts.kr` 추가
-4. 가비아 DNS에 `mindtest` CNAME → Vercel이 알려주는 값
+4. 가비아 DNS에 CNAME 추가 (아래 참고)
 5. Settings → Analytics 에서 **Web Analytics 활성화** (스크립트 태그는 이미 전 페이지에 들어있음)
+
+### 가비아 DNS 설정
+
+`chatgpts.kr` 네임서버는 가비아(`ns.gabia.net`)를 쓴다.
+My가비아 → 서비스관리 → 도메인 `chatgpts.kr` → **DNS 정보 → DNS 관리 → 레코드 수정**
+
+| 타입 | 호스트 | 값/위치 | TTL |
+|---|---|---|---|
+| CNAME | `mindtest` | Vercel Domains 화면이 알려주는 값 (`xxxxxxxx.vercel-dns-017.com.`) | 3600 |
+
+- 호스트는 `mindtest` 만 (`mindtest.chatgpts.kr` 전체를 넣지 말 것)
+- **값 끝에 마침표(`.`)를 반드시 찍는다.** 가비아는 이게 없으면 뒤에 도메인을 덧붙여버린다
+- ⚠️ 이 CNAME 값은 **프로젝트마다 다르다.** 자매 사이트 `hanja.chatgpts.kr` 의 값
+  (`7bdb8adc32f44e3d.vercel-dns-017.com`)을 복사해 쓰면 안 된다.
+  반드시 mindtest 프로젝트의 Domains 화면에 뜬 값을 쓸 것
+
+확인:
+
+```bash
+dig +short CNAME mindtest.chatgpts.kr     # 위에서 넣은 값이 나오면 성공
+curl -sI https://mindtest.chatgpts.kr | head -1
+```
+
+가비아 DNS는 보통 10분 안에 반영되지만 최대 1시간까지 걸릴 수 있다.
+Vercel Domains 화면의 상태가 `Valid Configuration` 으로 바뀌고 HTTPS 인증서가
+자동 발급되면 끝이다.
 
 ### DNS 연결이 끝난 뒤에 할 것
 
-`mindtest.vercel.app` 으로도 사이트가 그대로 열리면 검색엔진 입장에서 같은 콘텐츠가 두 주소에
-존재하게 된다. DNS가 정상 동작하는 걸 확인한 **다음에** `vercel.json` 에 아래를 추가한다.
+`mindtestkorea.vercel.app` 으로도 사이트가 그대로 열리면 검색엔진 입장에서 같은 콘텐츠가 두
+주소에 존재하게 된다. DNS가 정상 동작하는 걸 확인한 **다음에** `vercel.json` 에 아래를 추가한다.
 
 ```json
 "redirects": [
   {
     "source": "/((?!ads\\.txt|robots\\.txt|sitemap\\.xml).*)",
-    "has": [{ "type": "host", "value": "mindtest.vercel.app" }],
+    "has": [{ "type": "host", "value": "mindtestkorea.vercel.app" }],
     "destination": "https://mindtest.chatgpts.kr/$1",
     "permanent": false
   }
 ]
 ```
 
-⚠️ DNS 연결 **전에** 넣으면 `mindtest.vercel.app` 이 아직 뜨지도 않는 주소로 리다이렉트되어
-사이트 전체가 접속 불가가 된다. 순서를 반드시 지킬 것.
+⚠️ DNS 연결 **전에** 넣으면 `mindtestkorea.vercel.app` 이 아직 뜨지도 않는 주소로
+리다이렉트되어 사이트 전체가 접속 불가가 된다. 순서를 반드시 지킬 것.
 
 ## 애드센스
 
