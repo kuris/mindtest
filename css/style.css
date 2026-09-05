@@ -50,6 +50,7 @@ body[data-theme="money"] {
 
 * { box-sizing: border-box; }
 
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap');
 
 html, body {
@@ -62,18 +63,18 @@ html, body {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Gowun Dodum', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  font-size: 17px;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  font-size: 16px;
   line-height: 1.65;
   -webkit-text-size-adjust: 100%;
   word-break: keep-all;
 }
 
-/* 귀엽고 아기자기한 Jua 폰트 적용 */
-h1, h2, .test-title, .result-name, .site-head a, .view-btn, .btn,
+/* 귀엽고 아기자기한 Jua 폰트 적용 (헤더, 로고, 결과 타이틀, 배지) */
+h1, h2, .result-name, .site-head a, .view-btn, .btn,
 .share-hero-title, .share-hero-sub, .btn-share-sub, .result-kicker,
 .card h2, .panel h2, .result-score, .smart-share-tip {
-  font-family: 'Jua', 'Gowun Dodum', -apple-system, sans-serif;
+  font-family: 'Jua', 'Pretendard', sans-serif;
   letter-spacing: -0.01em;
 }
 
@@ -94,14 +95,22 @@ a { color: var(--key-dark); }
   justify-content: center;
   position: relative;
   gap: 8px;
-  padding: 18px 0 10px;
+  padding: 16px 0 10px;
 }
 .site-head a {
   color: var(--ink);
   text-decoration: none;
-  font-size: 20px;
-  font-weight: 700;
+  font-family: 'Jua', 'Pretendard', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
   letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: transform 0.15s ease;
+}
+.site-head a:hover {
+  transform: scale(1.03);
 }
 .site-head .dot { color: var(--key); }
 
@@ -111,30 +120,31 @@ a { color: var(--key-dark); }
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   z-index: 100;
 }
 #lang-btn {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.85);
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--ink-soft);
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
   transition: all 0.2s ease;
 }
 #lang-btn:hover {
   background: #ffffff;
+  color: var(--ink);
   border-color: var(--key);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
 }
 #lang-btn .lang-flag { font-size: 14px; }
 #lang-btn .lang-arrow { font-size: 10px; opacity: 0.6; transition: transform 0.2s ease; }
@@ -400,86 +410,149 @@ a { color: var(--key-dark); }
 
 /* ---------- 질문 화면 ---------- */
 
+.test-title {
+  margin: 0 auto 16px;
+  text-align: center;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--key-dark);
+  background: var(--key-soft);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 999px;
+  padding: 5px 16px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
 .progress {
-  height: 8px;
+  height: 10px;
   border-radius: 999px;
   background: var(--key-soft);
   overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 .progress-bar {
   height: 100%;
   width: 0;
   border-radius: 999px;
-  background: var(--key);
-  transition: width 0.25s ease;
+  background: linear-gradient(90deg, var(--key) 0%, var(--key-dark) 100%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .quiz-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0 26px;
-  min-height: var(--tap);
+  margin: 12px 0 24px;
+  min-height: 36px;
 }
 .btn-back {
-  min-height: var(--tap);
-  padding: 0 4px;
-  border: 0;
-  background: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
   color: var(--ink-soft);
-  font: inherit;
-  font-size: 15px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
-.btn-back[disabled] { opacity: 0.3; cursor: default; }
-.q-count { color: var(--ink-soft); font-size: 15px; font-variant-numeric: tabular-nums; }
+.btn-back:hover:not([disabled]) {
+  background: var(--key-soft);
+  color: var(--key-dark);
+}
+.btn-back[disabled] { opacity: 0.25; cursor: default; }
+
+.q-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
 
 .q-text {
-  margin: 0 0 24px;
-  font-size: 22px;
+  margin: 0 0 26px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 20.5px;
   font-weight: 700;
   line-height: 1.45;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  word-break: keep-all;
 }
+.q-text:focus { outline: none; }
 
 .answers { display: grid; gap: 12px; }
 
 .answer {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
-  min-height: var(--tap);
-  padding: 16px 18px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  min-height: 56px;
+  padding: 16px 20px;
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
   background: var(--card);
-  color: inherit;
-  font: inherit;
-  font-size: 16px;
+  color: var(--ink);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
   text-align: left;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  word-break: keep-all;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.answer:hover { border-color: var(--key); }
-.answer:active { background: var(--key-soft); }
-
-.test-title {
-  margin: 0 0 14px;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--ink-soft);
+.answer:hover {
+  border-color: var(--key);
+  background: var(--key-soft);
+  color: var(--key-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
 }
-
-.q-text:focus { outline: none; }
+.answer:active,
+.answer:focus-visible {
+  border-color: var(--key-dark);
+  background: var(--key-soft);
+  transform: scale(0.99);
+  box-shadow: 0 0 0 3px rgba(255, 122, 122, 0.22);
+}
 
 .q-grade {
   display: inline-block;
-  margin-bottom: 10px;
-  padding: 3px 12px;
+  margin-bottom: 12px;
+  padding: 4px 14px;
   border-radius: 999px;
   background: var(--key-soft);
   color: var(--key-dark);
+  font-family: 'Pretendard', sans-serif;
   font-size: 13px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 .q-grade:empty { display: none; }
 
@@ -839,17 +912,43 @@ a { color: var(--key-dark); }
 /* ---------- 푸터 ---------- */
 
 .site-foot {
-  margin-top: 36px;
-  padding-top: 20px;
+  margin-top: 48px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
   color: var(--ink-soft);
+  font-family: "Pretendard", -apple-system, sans-serif;
   font-size: 13px;
+  line-height: 1.75;
   text-align: center;
 }
-.site-foot a { color: var(--ink-soft); }
+.site-foot p {
+  margin: 4px 0;
+}
+.site-foot a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.site-foot a:hover {
+  color: var(--key-dark);
+}
+.site-foot a[href*="hanja"] {
+  display: inline-block;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: all 0.15s ease;
+}
+.site-foot a[href*="hanja"]:hover {
+  color: var(--key-dark);
+  text-decoration-color: var(--key);
+}
 
 @media (min-width: 600px) {
-  body { font-size: 18px; }
-  .q-text { font-size: 25px; }
+  body { font-size: 16.5px; }
+  .q-text { font-size: 24px; margin: 0 0 30px; }
+  .answer { padding: 18px 24px; }
   .result-name { font-size: 36px; }
 }
