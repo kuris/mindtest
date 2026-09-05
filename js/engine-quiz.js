@@ -11,6 +11,21 @@
   if (!T) { return; }
 
   var qs = T.questions;
+
+  // 문항별 보기 순서 무작위 셔플 (정답 번호 고정 방지)
+  qs.forEach(function (q) {
+    if (q.a && q.a.length > 1) {
+      var arr = q.a.slice();
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+      q.a = arr;
+    }
+  });
+
   var picks = [];
   var cur = 0;
 
