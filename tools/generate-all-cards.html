@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>OG & Result Card Batch Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Jua', 'Gowun Dodum', sans-serif; background: #1a1a24; color: #fff; padding: 20px; }
+    h1 { color: #ff7a7a; }
+    #log { font-family: monospace; background: #2a2a38; padding: 15px; border-radius: 8px; max-height: 400px; overflow: auto; white-space: pre-wrap; font-size: 13px; line-height: 1.6; }
+    .card-preview-grid { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+    .card-preview-grid img { width: 300px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+  </style>
+</head>
+<body>
+  <h1>🎨 마인드테스트 공유 카드 배치 렌더러</h1>
+  <p>Apple Color Emoji & Jua 폰트를 활용하여 고화질 OG 카드 및 모바일 결과 카드를 생성합니다.</p>
+  <div id="status">폰트 로딩 중...</div>
+  <div id="log"></div>
+  <div class="card-preview-grid" id="previews"></div>
+
+  <script>
+    function log(msg) {
+      var d = document.getElementById('log');
+      d.innerText += msg + '\n';
+      d.scrollTop = d.scrollHeight;
+      console.log(msg);
+    }
+
+    var THEMES = {
+      love:     { bg1: '#ff758c', bg2: '#ff7eb3', soft: '#ffeef2', accent: '#ff4757', tag: '#ff3366' },
+      kkondae:  { bg1: '#4a5b8c', bg2: '#2c3e6b', soft: '#edf2f7', accent: '#3b82f6', tag: '#2563eb' },
+      vocab:    { bg1: '#10b981', bg2: '#047857', soft: '#e6fffa', accent: '#059669', tag: '#047857' },
+      burnout:  { bg1: '#8b5cf6', bg2: '#6d28d9', soft: '#f3e8ff', accent: '#a855f7', tag: '#7c3aed' },
+      digital:  { bg1: '#0ea5e9', bg2: '#0284c7', soft: '#e0f2fe', accent: '#38bdf8', tag: '#0369a1' },
+      tmi:      { bg1: '#f97316', bg2: '#c2410c', soft: '#ffedd5', accent: '#ea580c', tag: '#c2410c' },
+      spelling: { bg1: '#3b82f6', bg2: '#1d4ed8', soft: '#eff6ff', accent: '#2563eb', tag: '#1e40af' },
+      slang:    { bg1: '#a855f7', bg2: '#7e22ce', soft: '#faf5ff', accent: '#9333ea', tag: '#6b21a8' },
+      money:    { bg1: '#059669', bg2: '#064e3b', soft: '#ecfdf5', accent: '#10b981', tag: '#047857' }
+    };
+
+    var OG_LIST = [
+      // 신규 3개 테스트 메인 커버
+      { file: 'og/spelling.png', theme: 'spelling', emoji: '✍️', kicker: '맞춤법 능력 테스트', title: '맞춤법 능력 테스트', subtitle: '10문제로 검증하는 나의 국어 실력! 며칠 vs 몇일?' },
+      { file: 'og/slang.png',    theme: 'slang',    emoji: '⚡', kicker: 'MZ 신조어 테스트',   title: 'MZ 신조어 테스트',   subtitle: '10문제로 알아보는 나의 밈력 지수! 중꺾마·분좋카?' },
+      { file: 'og/money.png',    theme: 'money',    emoji: '💸', kicker: '소비 성향 테스트',   title: '소비 성향 테스트',   subtitle: '10문항으로 진단하는 나의 지갑 소비 습관 & 머니 밸런스' },
+
+      // 맞춤법 결과 5종
+      { file: 'og/spelling-1.png', theme: 'spelling', emoji: '💧', kicker: '맞춤법 능력 테스트 결과', title: '맞춤법 파괴자',     subtitle: '“외 않되? 어의업내... 맞춤법의 새로운 창조자”' },
+      { file: 'og/spelling-2.png', theme: 'spelling', emoji: '🌱', kicker: '맞춤법 능력 테스트 결과', title: '맞춤법 걸음마',     subtitle: '“느낌으로 쓰지만 자주 틀리는 순수한 영혼”' },
+      { file: 'og/spelling-3.png', theme: 'spelling', emoji: '⚖️', kicker: '맞춤법 능력 테스트 결과', title: '평범한 한국인',     subtitle: '“웬만하면 맞지만 며칠/몇일에서 멈칫하는 현실형”' },
+      { file: 'og/spelling-4.png', theme: 'spelling', emoji: '📚', kicker: '맞춤법 능력 테스트 결과', title: '맞춤법 모범생',     subtitle: '“카톡 보낼 때 띄어쓰기까지 꼼꼼한 프로 소통러”' },
+      { file: 'og/spelling-5.png', theme: 'spelling', emoji: '👑', kicker: '맞춤법 능력 테스트 결과', title: '국립국어원 꿈나무', subtitle: '“틀린 글자 보면 온몸이 근질거리는 언어의 달인”' },
+
+      // MZ 신조어 결과 5종
+      { file: 'og/slang-1.png', theme: 'slang', emoji: '🗿', kicker: 'MZ 신조어 테스트 결과', title: '고대 화석',         subtitle: '“신조어가 외계어로 들리는 진정한 레트로 감성러”' },
+      { file: 'og/slang-2.png', theme: 'slang', emoji: '📻', kicker: 'MZ 신조어 테스트 결과', title: '라디오 세대',       subtitle: '“눈치껏 알아듣지만 직접 쓰기엔 쑥스러운 관망파”' },
+      { file: 'og/slang-3.png', theme: 'slang', emoji: '📱', kicker: 'MZ 신조어 테스트 결과', title: '트렌드 일반인',     subtitle: '“알 건 다 알지만 유행 속도가 살짝 벅찬 현대인”' },
+      { file: 'og/slang-4.png', theme: 'slang', emoji: '⚡', kicker: 'MZ 신조어 테스트 결과', title: '트렌드 얼리어답터', subtitle: '“신조어는 나의 모국어! 유행을 선도하는 밈 마스터”' },
+      { file: 'og/slang-5.png', theme: 'slang', emoji: '🛸', kicker: 'MZ 신조어 테스트 결과', title: '외계어 마스터',     subtitle: '“밈과 신조어의 살아있는 백과사전! 시대의 최전선”' },
+
+      // 소비 성향 결과 5종
+      { file: 'og/money-1.png', theme: 'money', emoji: '🛡️', kicker: '소비 성향 머니 테스트 결과', title: '자린고비 절약왕', subtitle: '“10원 한 장도 허투루 쓰지 않는 철벽 방어 절약러”' },
+      { file: 'og/money-2.png', theme: 'money', emoji: '📊', kicker: '소비 성향 머니 테스트 결과', title: '계획적인 알뜰파', subtitle: '“예산 안에서 스마트하게 소비하는 가성비 마스터”' },
+      { file: 'og/money-3.png', theme: 'money', emoji: '⚖️', kicker: '소비 성향 머니 테스트 결과', title: '균형 잡힌 실속파', subtitle: '“쓸 땐 쓰고 아낄 땐 아끼는 밸런스 소비러”' },
+      { file: 'og/money-4.png', theme: 'money', emoji: '🛍️', kicker: '소비 성향 머니 테스트 결과', title: '욜로 기분파',     subtitle: '“기분 따라 지갑이 열리는 행복 우선 탕진러”' },
+      { file: 'og/money-5.png', theme: 'money', emoji: '💸', kicker: '소비 성향 머니 테스트 결과', title: '플렉스 불도저',   subtitle: '“인생은 한 번뿐! 내일 없는 화끈한 플렉스 마스터”' },
+
+      // 기존 monochrome이었던 꼰대력 5종 리뉴얼
+      { file: 'og/kkondae-1.png', theme: 'kkondae', emoji: '💧', kicker: '꼰대력 테스트 결과', title: '청정수 0%',    subtitle: '“꼰대력 제로! 편견 없이 열린 마음의 소유자”' },
+      { file: 'og/kkondae-2.png', theme: 'kkondae', emoji: '🌱', kicker: '꼰대력 테스트 결과', title: '새싹 꼰대',    subtitle: '“가끔 나도 모르게 훈수 두고 싶어지는 새싹”' },
+      { file: 'og/kkondae-3.png', theme: 'kkondae', emoji: '⚖️', kicker: '꼰대력 테스트 결과', title: '반반 꼰대',    subtitle: '“상황과 상대에 따라 유연하게 바뀌는 현실주의자”' },
+      { file: 'og/kkondae-4.png', theme: 'kkondae', emoji: '💼', kicker: '꼰대력 테스트 결과', title: '프로 꼰대',    subtitle: '“라떼는 말이야가 입가에 맴도는 어엿한 선배”' },
+      { file: 'og/kkondae-5.png', theme: 'kkondae', emoji: '🗿', kicker: '꼰대력 테스트 결과', title: '살아있는 화석', subtitle: '“내 말이 곧 법! 누구도 거역할 수 없는 꼰대 보스”' },
+
+      // 기존 monochrome이었던 어휘력 6종 리뉴얼
+      { file: 'og/vocab-8.png',  theme: 'vocab', emoji: '🏆', kicker: '한자어 어휘력 테스트 결과', title: '8급 한자 달인',  subtitle: '“10문제 올클리어! 국어사전 수준의 독보적 어휘력”' },
+      { file: 'og/vocab-7.png',  theme: 'vocab', emoji: '🌟', kicker: '한자어 어휘력 테스트 결과', title: '7급 한자 고수',  subtitle: '“어려운 시사용어도 막힘없이 이해하는 지식인”' },
+      { file: 'og/vocab-6.png',  theme: 'vocab', emoji: '📚', kicker: '한자어 어휘력 테스트 결과', title: '6급 한자 중수',  subtitle: '“일상 대화는 완벽하지만 가끔 헷갈리는 현실형”' },
+      { file: 'og/vocab-5.png',  theme: 'vocab', emoji: '📖', kicker: '한자어 어휘력 테스트 결과', title: '5급 한자 입문',  subtitle: '“어휘의 바다에서 여유를 찾아가는 단계”' },
+      { file: 'og/vocab-4b.png', theme: 'vocab', emoji: '✏️', kicker: '한자어 어휘력 테스트 결과', title: '4b급 한자 초보', subtitle: '“문맥으로 눈치껏 맞히는 순발력의 소유자”' },
+      { file: 'og/vocab-4.png',  theme: 'vocab', emoji: '🌱', kicker: '한자어 어휘력 테스트 결과', title: '4급 한자 새싹',  subtitle: '“오늘부터 매일 1단어씩! 성장 가능성 무한대”' },
+
+      // 기존 monochrome이었던 번아웃 5종 리뉴얼
+      { file: 'og/burnout-1.png', theme: 'burnout', emoji: '🟢', kicker: '번아웃 자가진단 결과', title: '에너지 완충 100%', subtitle: '“몸도 마음도 활력 넘치는 최상의 컨디션!”' },
+      { file: 'og/burnout-2.png', theme: 'burnout', emoji: '🟡', kicker: '번아웃 자가진단 결과', title: '살짝 피로함 70%',   subtitle: '“조금 지쳤지만 가벼운 휴식으로 회복 가능한 상태”' },
+      { file: 'og/burnout-3.png', theme: 'burnout', emoji: '🟠', kicker: '번아웃 자가진단 결과', title: '주의 경고등 50%',   subtitle: '“번아웃 초기 단계! 나만의 충전 시간이 절실해요”' },
+      { file: 'og/burnout-4.png', theme: 'burnout', emoji: '🔴', kicker: '번아웃 자가진단 결과', title: '방전 직전 25%',     subtitle: '“모든 게 버거운 고위험 상태! 적극적인 휴식 필요”' },
+      { file: 'og/burnout-5.png', theme: 'burnout', emoji: '⚫', kicker: '번아웃 자가진단 결과', title: '완전 방전 0%',       subtitle: '“영혼까지 탈곡된 상태! 지금 당장 모든 걸 내려놓으세요”' },
+
+      // 기존 monochrome이었던 디지털 중독 5종 리뉴얼
+      { file: 'og/digital-1.png', theme: 'digital', emoji: '🌿', kicker: '디지털 중독 진단 결과', title: '디지털 미니멀리스트', subtitle: '“스마트폰 없이도 온전히 삶을 즐기는 청정 인간”' },
+      { file: 'og/digital-2.png', theme: 'digital', emoji: '📲', kicker: '디지털 중독 진단 결과', title: '적당한 현대인',       subtitle: '“필요할 때만 쓰고 통제력을 유지하는 스마트 유저”' },
+      { file: 'og/digital-3.png', theme: 'digital', emoji: '🔔', kicker: '디지털 중독 진단 결과', title: '알림 중독 초기',      subtitle: '“진동 안 울려도 자꾸 폰 화면을 켜보는 상태”' },
+      { file: 'og/digital-4.png', theme: 'digital', emoji: '📡', kicker: '디지털 중독 진단 결과', title: '폰 없인 못 살아',     subtitle: '“배터리 20% 밑으로 떨어지면 극심한 불안감 엄습”' },
+      { file: 'og/digital-5.png', theme: 'digital', emoji: '🤖', kicker: '디지털 중독 진단 결과', title: '스마트폰과 한 몸',    subtitle: '“눈 떠서 감을 때까지 폰과 한 몸인 중독 끝판왕”' },
+
+      // TMI 8종 및 메인 커버
+      { file: 'og/tmi.png',                 theme: 'tmi', emoji: '🗣️', kicker: 'TMI 유형 테스트',   title: '나의 TMI 유형 테스트', subtitle: '9문항으로 알아보는 나의 대화 스타일과 말하기 습관' },
+      { file: 'og/tmi-live-reporter.png',   theme: 'tmi', emoji: '📡', kicker: 'TMI 유형 테스트 결과', title: '실시간 중계 기자',  subtitle: '“단톡방의 살아있는 중계차! 정보 전달력 1위”' },
+      { file: 'og/tmi-rapid-analyst.png',   theme: 'tmi', emoji: '🧮', kicker: 'TMI 유형 테스트 결과', title: '즉흥 분석가',       subtitle: '“논리와 팩트로 승부하는 스마트한 대화러”' },
+      { file: 'og/tmi-warm-narrator.png',   theme: 'tmi', emoji: '📖', kicker: 'TMI 유형 테스트 결과', title: '따뜻한 스토리텔러', subtitle: '“따스한 감성과 디테일로 듣는 사람을 사로잡는 마법”' },
+      { file: 'og/tmi-headline-editor.png', theme: 'tmi', emoji: '📰', kicker: 'TMI 유형 테스트 결과', title: '헤드라인 편집자',   subtitle: '“핵심만 쏙쏙! 긴 말 싫어하는 요약의 신”' },
+      { file: 'og/tmi-slow-empath.png',     theme: 'tmi', emoji: '🫂', kicker: 'TMI 유형 테스트 결과', title: '느린 공감러',       subtitle: '“천천히 하지만 깊게 마음을 나누는 힐러”' },
+      { file: 'og/tmi-cool-summarizer.png', theme: 'tmi', emoji: '✂️', kicker: 'TMI 유형 테스트 결과', title: '쿨한 요약러',       subtitle: '“3줄 요약 필수! 군더더기 없는 쿨한 화법”' },
+      { file: 'og/tmi-late-bloomer.png',    theme: 'tmi', emoji: '🌱', kicker: 'TMI 유형 테스트 결과', title: '느긋한 공감형',     subtitle: '“마이웨이로 편안하게 소통하는 평화주의자”' },
+      { file: 'og/tmi-quiet-realist.png',   theme: 'tmi', emoji: '🧱', kicker: 'TMI 유형 테스트 결과', title: '과묵한 현실주의자', subtitle: '“필요한 말만 묵직하게 던지는 든든한 바위”' }
+    ];
+
+    function drawRoundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function renderOGCard(item) {
+      var canvas = document.createElement('canvas');
+      var w = 1200;
+      var h = 630;
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+
+      var th = THEMES[item.theme] || THEMES.love;
+
+      // 1) 배경 그라디언트
+      var grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, th.bg1);
+      grad.addColorStop(1, th.bg2);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // 은은한 배경 원 & 데코
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.beginPath(); ctx.arc(120, 110, 180, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(w - 100, 160, 150, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(140, h - 90, 140, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(w - 120, h - 110, 200, 0, Math.PI * 2); ctx.fill();
+
+      // 반짝이 별
+      ctx.font = '32px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨', 180, 240);
+      ctx.fillText('💫', w - 180, 150);
+      ctx.fillText('💖', w - 160, 430);
+      ctx.fillText('✨', 150, h - 220);
+
+      // 2) 상단 캡슐 태그
+      var tagText = '마인드테스트  ·  ' + item.kicker;
+      ctx.font = '600 24px "Jua", sans-serif';
+      var tagW = ctx.measureText(tagText).width + 52;
+      var tagX = (w - tagW) / 2;
+      var tagY = 62;
+      drawRoundRect(ctx, tagX, tagY, tagW, 46, 23);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.fillText(tagText, w / 2, tagY + 32);
+
+      // 3) 이모지 원형 페데스탈
+      var emojiCenterY = 220;
+      var pedestalR = 76;
+      ctx.beginPath();
+      ctx.arc(w / 2, emojiCenterY, pedestalR, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 6;
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Apple Color Emoji
+      ctx.font = '96px "Apple Color Emoji", -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(item.emoji, w / 2, emojiCenterY + 34);
+
+      // 4) 결과명 (Jua 폰트 볼드)
+      var nameY = 370;
+      ctx.font = 'bold 74px "Jua", sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+      ctx.shadowBlur = 18;
+      ctx.shadowOffsetY = 6;
+      ctx.fillText(item.title, w / 2, nameY);
+      ctx.shadowColor = 'transparent';
+
+      // 5) 부제목 / 한 줄 요약
+      var subY = 435;
+      ctx.font = '500 29px "Gowun Dodum", -apple-system, sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetY = 3;
+      ctx.fillText(item.subtitle, w / 2, subY);
+      ctx.shadowColor = 'transparent';
+
+      // 6) 하단 화이트 바이럴 CTA 버튼
+      var ctaW = 420;
+      var ctaH = 56;
+      var ctaX = (w - ctaW) / 2;
+      var ctaY = 502;
+      drawRoundRect(ctx, ctaX, ctaY, ctaW, ctaH, 28);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+      ctx.shadowBlur = 18;
+      ctx.shadowOffsetY = 6;
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+
+      ctx.fillStyle = th.tag;
+      ctx.font = 'bold 26px "Jua", sans-serif';
+      ctx.fillText('👉  너도 해봐! mindtest.chatgpts.kr', w / 2, ctaY + 38);
+
+      return canvas;
+    }
+
+    async function sendToServer(dataUrl, filename) {
+      const res = await fetch('http://localhost:8091/save-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: dataUrl, filename: filename })
+      });
+      return await res.json();
+    }
+
+    async function runBatch() {
+      document.getElementById('status').innerText = '렌더링 시작... 총 ' + OG_LIST.length + '개';
+      log('총 ' + OG_LIST.length + '개의 OG 카드를 생성합니다.');
+
+      for (var i = 0; i < OG_LIST.length; i++) {
+        var item = OG_LIST[i];
+        try {
+          var canvas = renderOGCard(item);
+          var dataUrl = canvas.toDataURL('image/png');
+
+          // 미리보기 추가
+          if (i < 6) {
+            var img = document.createElement('img');
+            img.src = dataUrl;
+            img.title = item.file;
+            document.getElementById('previews').appendChild(img);
+          }
+
+          var result = await sendToServer(dataUrl, item.file);
+          log('✅ (' + (i + 1) + '/' + OG_LIST.length + ') ' + item.file + ' 완료');
+        } catch (e) {
+          log('❌ 오류 (' + item.file + '): ' + e.message);
+        }
+      }
+
+      // 모바일 결과 카드 1080x1460 렌더링 테스트
+      try {
+        log('모바일 결과 카드 (1080x1460) 렌더링 중...');
+        var mobileData = {
+          testId: 'money',
+          kicker: '소비 성향 테스트 결과',
+          name: '자린고비 절약왕',
+          summary: '10원 한 장도 허투루 쓰지 않는 철벽 방어 절약러!',
+          emoji: '🛡️',
+          badge: '소비 지수 15% · 절약 레벨 MAX',
+          traits: [
+            '가계부와 영수증 정리는 나의 기본 일상이에요',
+            '할인 쿠폰과 페이백 혜택은 절대 놓치지 않아요',
+            '충동구매 대신 3일 생각하고 결정하는 신중파예요'
+          ]
+        };
+        var mobileCanvas = renderMobileCard(mobileData);
+        var mobileDataUrl = mobileCanvas.toDataURL('image/png');
+        await sendToServer(mobileDataUrl, 'tools/test_mobile_card.png');
+        log('✅ 모바일 결과 카드 tools/test_mobile_card.png 완료');
+      } catch (me) {
+        log('❌ 모바일 카드 오류: ' + me.message);
+      }
+
+      document.getElementById('status').innerText = '🎉 모든 카드 생성 완료!';
+      log('\n🎉 모든 작업이 성공적으로 완료되었습니다!');
+    }
+
+    function renderMobileCard(data) {
+      var canvas = document.createElement('canvas');
+      var w = 1080;
+      var h = 1460;
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      var theme = THEMES[data.testId] || THEMES.love;
+
+      // 1) 전체 배경
+      var bgGrad = ctx.createLinearGradient(0, 0, w, h);
+      bgGrad.addColorStop(0, theme.soft);
+      bgGrad.addColorStop(0.5, '#ffffff');
+      bgGrad.addColorStop(1, theme.soft);
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // 귀여운 파스텔 장식 원들
+      ctx.fillStyle = theme.bg1 + '18';
+      ctx.beginPath(); ctx.arc(100, 120, 160, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(w - 80, 220, 140, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(120, h - 140, 130, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(w - 120, h - 200, 180, 0, Math.PI * 2); ctx.fill();
+
+      // 반짝이 별
+      function drawSparkle(x, y, size) {
+        ctx.font = size + 'px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('✨', x, y);
+      }
+      drawSparkle(90, 260, 36);
+      drawSparkle(w - 100, 140, 32);
+      drawSparkle(w - 85, 420, 28);
+      drawSparkle(80, h - 340, 30);
+
+      // 2) 메인 라운드 화이트 카드
+      var cx = 55, cy = 60, cw = 970, ch = 1340, cr = 44;
+      drawRoundRect(ctx, cx, cy, cw, ch, cr);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+      ctx.shadowBlur = 45;
+      ctx.shadowOffsetY = 18;
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+
+      // 카드 테두리
+      ctx.strokeStyle = theme.bg1 + '28';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // 카드 상단 파스텔 헤더 바
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(cx + cr, cy);
+      ctx.lineTo(cx + cw - cr, cy);
+      ctx.quadraticCurveTo(cx + cw, cy, cx + cw, cy + cr);
+      ctx.lineTo(cx + cw, cy + 18);
+      ctx.lineTo(cx, cy + 18);
+      ctx.lineTo(cx, cy + cr);
+      ctx.quadraticCurveTo(cx, cy, cx + cr, cy);
+      ctx.closePath();
+      var topBarGrad = ctx.createLinearGradient(cx, cy, cx + cw, cy);
+      topBarGrad.addColorStop(0, theme.bg1);
+      topBarGrad.addColorStop(1, theme.bg2);
+      ctx.fillStyle = topBarGrad;
+      ctx.fill();
+      ctx.restore();
+
+      // 3) 상단 브랜드 & 테스트 이름 태그
+      var tagText = '마인드테스트  ·  ' + (data.kicker || '심리테스트 결과');
+      ctx.font = '600 24px "Jua", sans-serif';
+      var tagW = ctx.measureText(tagText).width + 48;
+      var tagX = (w - tagW) / 2;
+      var tagY = 110;
+      drawRoundRect(ctx, tagX, tagY, tagW, 44, 22);
+      ctx.fillStyle = theme.soft;
+      ctx.fill();
+      ctx.fillStyle = theme.tag;
+      ctx.textAlign = 'center';
+      ctx.fillText(tagText, w / 2, tagY + 31);
+
+      // 4) 거대 이모지 & 파스텔 원형 배경
+      var emojiCenterY = 275;
+      var emojiPedestalR = 82;
+      ctx.beginPath();
+      ctx.arc(w / 2, emojiCenterY, emojiPedestalR, 0, Math.PI * 2);
+      var emojiGrad = ctx.createRadialGradient(w / 2, emojiCenterY - 20, 10, w / 2, emojiCenterY, emojiPedestalR);
+      emojiGrad.addColorStop(0, '#ffffff');
+      emojiGrad.addColorStop(1, theme.soft);
+      ctx.fillStyle = emojiGrad;
+      ctx.shadowColor = theme.bg1 + '35';
+      ctx.shadowBlur = 24;
+      ctx.shadowOffsetY = 8;
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+
+      ctx.strokeStyle = theme.bg1 + '40';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      ctx.font = '105px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(data.emoji, w / 2, emojiCenterY + 36);
+
+      // 이모지 양옆 미니 데코
+      ctx.font = '28px sans-serif';
+      ctx.fillText('💫', w / 2 - 120, emojiCenterY - 25);
+      ctx.fillText('💖', w / 2 + 120, emojiCenterY + 25);
+
+      // 5) 결과명
+      var nameY = 430;
+      ctx.font = 'bold 58px "Jua", sans-serif';
+      var nameW = ctx.measureText(data.name).width;
+
+      // 형광펜 효과
+      ctx.fillStyle = theme.bg1 + '25';
+      drawRoundRect(ctx, (w - nameW) / 2 - 14, nameY - 22, nameW + 28, 32, 16);
+      ctx.fill();
+
+      ctx.fillStyle = '#1e272e';
+      ctx.fillText(data.name, w / 2, nameY + 6);
+
+      // 6) 요약 멘트
+      var quoteY = 475;
+      ctx.font = '500 27px "Gowun Dodum", sans-serif';
+      var quoteText = '“ ' + data.summary + ' ”';
+      ctx.fillStyle = '#4b5563';
+      ctx.fillText(quoteText, w / 2, quoteY + 20);
+
+      // 7) 배지
+      var contentStartY = 540;
+      if (data.badge) {
+        ctx.font = 'bold 23px "Jua", sans-serif';
+        var badgeW = ctx.measureText(data.badge).width + 48;
+        var badgeX = (w - badgeW) / 2;
+        var badgeY = contentStartY;
+        drawRoundRect(ctx, badgeX, badgeY, badgeW, 44, 22);
+        var badgeGrad = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeW, badgeY);
+        badgeGrad.addColorStop(0, theme.bg1);
+        badgeGrad.addColorStop(1, theme.bg2);
+        ctx.fillStyle = badgeGrad;
+        ctx.shadowColor = theme.bg1 + '40';
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetY = 4;
+        ctx.fill();
+        ctx.shadowColor = 'transparent';
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('✨ ' + data.badge, w / 2, badgeY + 30);
+        contentStartY = 615;
+      }
+
+      // 8) 핵심 특징 리스트 박스
+      var boxX = 100, boxY = contentStartY + 10, boxW = 880, boxH = 430;
+      drawRoundRect(ctx, boxX, boxY, boxW, boxH, 32);
+      ctx.fillStyle = theme.soft + '80';
+      ctx.fill();
+      ctx.strokeStyle = theme.bg1 + '20';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = '#2c2a33';
+      ctx.font = 'bold 28px "Jua", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('💖  나의 핵심 특징 & 매력', boxX + 40, boxY + 54);
+
+      var itemY = boxY + 86;
+      var itemH = 92;
+      var itemW = boxW - 60;
+      var icons = ['🍀', '⭐', '⚡', '🌷'];
+
+      data.traits.forEach(function (tr, idx) {
+        drawRoundRect(ctx, boxX + 30, itemY, itemW, itemH, 20);
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.04)';
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetY = 4;
+        ctx.fill();
+        ctx.shadowColor = 'transparent';
+
+        drawRoundRect(ctx, boxX + 48, itemY + 22, 48, 48, 14);
+        ctx.fillStyle = theme.soft;
+        ctx.fill();
+        ctx.font = '24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(icons[idx % icons.length], boxX + 72, itemY + 56);
+
+        ctx.fillStyle = '#2d3748';
+        ctx.font = '500 26px "Gowun Dodum", sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText(tr, boxX + 115, itemY + 54);
+
+        itemY += itemH + 16;
+      });
+
+      // 9) 하단 CTA
+      var footY = boxY + boxH + 60;
+      var ctaW = 540;
+      var ctaH = 64;
+      var ctaX = (w - ctaW) / 2;
+      drawRoundRect(ctx, ctaX, footY, ctaW, ctaH, 32);
+      var ctaGrad = ctx.createLinearGradient(ctaX, footY, ctaX + ctaW, footY);
+      ctaGrad.addColorStop(0, theme.bg1);
+      ctaGrad.addColorStop(1, theme.bg2);
+      ctx.fillStyle = ctaGrad;
+      ctx.shadowColor = theme.bg1 + '50';
+      ctx.shadowBlur = 20;
+      ctx.shadowOffsetY = 6;
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 28px "Jua", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('👉  너도 해봐! mindtest.chatgpts.kr', w / 2, footY + 43);
+
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = '500 20px "Gowun Dodum", sans-serif';
+      ctx.fillText('마인드테스트 · 3분이면 끝나는 심리테스트 모음', w / 2, footY + 105);
+
+      return canvas;
+    }
+
+    // 폰트 로드 대기 후 실행
+    document.fonts.ready.then(function () {
+      setTimeout(runBatch, 500);
+    });
+  </script>
+</body>
+</html>

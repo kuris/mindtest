@@ -59,17 +59,17 @@ function generateQuizResultHtml(test, level) {
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="${esc(tweet)} - ${SITE}">
 <meta property="og:description" content="${esc(level.summary)}">
-<meta property="og:image" content="${BASE}/og/default.png">
+<meta property="og:image" content="${BASE}/og/${test.resultPrefix}${slug}.png">
 <meta property="og:url" content="${url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(tweet)} - ${SITE}">
 <meta name="twitter:description" content="${esc(level.summary)}">
-<meta name="twitter:image" content="${BASE}/og/default.png">
+<meta name="twitter:image" content="${BASE}/og/${test.resultPrefix}${slug}.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=2">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -148,6 +148,7 @@ ${level.traits.map(t => `    <li>${esc(t)}</li>`).join('\n')}
 </footer>
 </div>
 <script src="../js/i18n.js"></script>
+<script src="../js/share-card.js?v=2"></script>
 </body>
 </html>
 `;
@@ -183,17 +184,17 @@ function generateScoreResultHtml(test, grade) {
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="${esc(tweet)} - ${SITE}">
 <meta property="og:description" content="${esc(grade.summary)}">
-<meta property="og:image" content="${BASE}/og/default.png">
+<meta property="og:image" content="${BASE}/og/${test.resultPrefix}${slug}.png">
 <meta property="og:url" content="${url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(tweet)} - ${SITE}">
 <meta name="twitter:description" content="${esc(grade.summary)}">
-<meta name="twitter:image" content="${BASE}/og/default.png">
+<meta name="twitter:image" content="${BASE}/og/${test.resultPrefix}${slug}.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=2">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -270,6 +271,7 @@ ${grade.traits.map(t => `    <li>${esc(t)}</li>`).join('\n')}
 </footer>
 </div>
 <script src="../js/i18n.js"></script>
+<script src="../js/share-card.js?v=2"></script>
 </body>
 </html>
 `;
