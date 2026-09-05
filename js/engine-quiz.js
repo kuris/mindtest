@@ -21,6 +21,8 @@
   var elA = document.getElementById('answers');
   var elGrade = document.getElementById('qgrade');
 
+  var isTransitioning = false;
+
   function render() {
     var q = qs[cur];
     elBar.style.width = ((cur + 1) / qs.length * 100) + '%';
@@ -28,6 +30,9 @@
     elBack.disabled = (cur === 0);
     elQ.textContent = q.q;
     if (elGrade) { elGrade.textContent = q.grade ? q.grade + ' 수준' : ''; }
+    elQ.classList.remove('q-fade');
+    void elQ.offsetWidth;
+    elQ.classList.add('q-fade');
 
     elA.textContent = '';
     q.a.forEach(function (opt, i) {
@@ -35,19 +40,26 @@
       b.type = 'button';
       b.className = 'answer';
       b.textContent = opt.text;
-      b.addEventListener('click', function () { choose(i); });
+      b.addEventListener('click', function () { choose(i, b); });
       elA.appendChild(b);
     });
     elQ.focus();
   }
 
-  function choose(i) {
+  function choose(i, b) {
+    if (isTransitioning) { return; }
+    isTransitioning = true;
     picks[cur] = i;
-    if (cur < qs.length - 1) { cur++; render(); }
-    else { finish(); }
+    if (b) { b.classList.add('is-selected'); }
+    setTimeout(function () {
+      isTransitioning = false;
+      if (cur < qs.length - 1) { cur++; render(); }
+      else { finish(); }
+    }, 150);
   }
 
   function back() {
+    if (isTransitioning) { return; }
     if (cur > 0) { cur--; render(); }
   }
 
