@@ -138,7 +138,7 @@
       var mainLede = document.querySelector('.wrap > .lede');
       if (mainLede && ui['site.lede']) mainLede.textContent = ui['site.lede'];
 
-      var cardTests = ['love', 'kkondae', 'vocab', 'burnout', 'digital', 'tmi'];
+      var cardTests = ['love', 'kkondae', 'vocab', 'burnout', 'digital', 'tmi', 'spelling', 'slang', 'money'];
       cardTests.forEach(function (tId) {
         var card = cardList.querySelector('a[href*="' + tId + '.html"]');
         if (card) {
@@ -211,6 +211,11 @@
       var lIdx = levelMap[subSlug];
       if (lIdx !== undefined && testObj.levels[lIdx]) {
         resData = testObj.levels[lIdx];
+      } else {
+        var numIdx = parseInt(subSlug, 10) - 1;
+        if (!isNaN(numIdx) && testObj.levels[numIdx]) {
+          resData = testObj.levels[numIdx];
+        }
       }
     }
 
@@ -226,12 +231,12 @@
     var headLede = document.querySelector('.result-head .lede');
     if (headLede && resData.summary) headLede.textContent = resData.summary;
 
-    // 점수 배지 패치 (burnout, digital, kkondae)
-    var badge = document.querySelector('.score-badge');
+    // 점수 배지 패치 (burnout, digital, kkondae, money)
+    var badge = document.getElementById('score-badge') || document.querySelector('.score-badge') || document.querySelector('.result-score');
     if (badge && ui['badge.' + testId]) {
       var scoreMatch = badge.textContent.match(/(\d+)%/);
       var pctVal = scoreMatch ? scoreMatch[1] : '';
-      badge.textContent = ui['badge.' + testId].replace('{v}', pctVal);
+      if (pctVal) badge.textContent = ui['badge.' + testId].replace('{v}', pctVal);
     }
 
     // 패널들 패치
@@ -241,7 +246,7 @@
       if (!h2) return;
       var title = h2.textContent.trim();
 
-      if (title.indexOf('어떤 사람') !== -1 || title.indexOf('진단') !== -1 || title.indexOf('어휘력') !== -1) {
+      if (title.indexOf('어떤 사람') !== -1 || title.indexOf('진단') !== -1 || title.indexOf('어휘력') !== -1 || title.indexOf('수준') !== -1 || title.indexOf('스타일') !== -1 || title.indexOf('상태') !== -1) {
         if (ui['result.desc']) h2.textContent = ui['result.desc'];
         var p = panel.querySelector('p');
         if (p && resData.desc) p.textContent = resData.desc;

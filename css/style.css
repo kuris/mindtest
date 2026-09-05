@@ -38,6 +38,15 @@ body[data-theme="digital"] {
 body[data-theme="tmi"] {
   --key: #e8924a; --key-dark: #c06d28; --key-soft: #fdeede; --bg: #fff9f4;
 }
+body[data-theme="spelling"] {
+  --key: #2563eb; --key-dark: #1d4ed8; --key-soft: #eff6ff; --bg: #f8fafc;
+}
+body[data-theme="slang"] {
+  --key: #8b5cf6; --key-dark: #6d28d9; --key-soft: #f5f3ff; --bg: #faf5ff;
+}
+body[data-theme="money"] {
+  --key: #059669; --key-dark: #047857; --key-soft: #ecfdf5; --bg: #f0fdf4;
+}
 
 * { box-sizing: border-box; }
 
@@ -178,6 +187,51 @@ a { color: var(--key-dark); }
   font-size: 15px;
 }
 
+/* ---------- 뷰 전환 컨트롤러 (3x3 그리드 / 카드 목록) ---------- */
+.view-switch-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 16px;
+}
+.view-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: #ebe6df;
+  padding: 3px;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+}
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.view-btn .btn-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+.view-btn:hover {
+  color: var(--ink);
+}
+.view-btn.active {
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* ---------- 카드 (홈 목록) ---------- */
 
 .card-list {
@@ -197,6 +251,7 @@ a { color: var(--key-dark); }
   text-decoration: none;
   color: inherit;
   box-shadow: 0 2px 10px rgba(60, 50, 45, 0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 .card:active { transform: scale(0.99); }
 
@@ -211,6 +266,127 @@ a { color: var(--key-dark); }
   background: var(--key-soft);
   color: var(--key-dark);
   font-size: 13px;
+}
+
+/* 카드별 고유 테마 컬러 포인트 */
+.card[data-card="love"] { --c-soft: #ffeaea; --c-dark: #e05555; }
+.card[data-card="kkondae"] { --c-soft: #e8ecf7; --c-dark: #35446d; }
+.card[data-card="vocab"] { --c-soft: #e4f4ec; --c-dark: #2e7a58; }
+.card[data-card="burnout"] { --c-soft: #ede8f7; --c-dark: #5c4184; }
+.card[data-card="digital"] { --c-soft: #ddf1f6; --c-dark: #16738a; }
+.card[data-card="tmi"] { --c-soft: #fdeede; --c-dark: #c06d28; }
+.card[data-card="spelling"] { --c-soft: #eff6ff; --c-dark: #1d4ed8; }
+.card[data-card="slang"] { --c-soft: #f5f3ff; --c-dark: #6d28d9; }
+.card[data-card="money"] { --c-soft: #ecfdf5; --c-dark: #047857; }
+
+.card[data-card] .meta {
+  background: var(--c-soft, var(--key-soft));
+  color: var(--c-dark, var(--key-dark));
+}
+
+/* ---------- 3x3 그리드 뷰 (첫 화면에 9개 모두 노출) ---------- */
+.card-list.view-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.card-list.view-grid li {
+  list-style: none;
+  display: flex;
+}
+
+.card-list.view-grid .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 12px 6px 10px;
+  min-height: 104px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: 0 2px 8px rgba(60, 50, 45, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-list.view-grid .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+  border-color: var(--c-dark, var(--key));
+}
+
+.card-list.view-grid .card:active {
+  transform: scale(0.97);
+}
+
+.card-list.view-grid .card .emoji {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 6px;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+  transition: transform 0.2s ease;
+}
+
+.card-list.view-grid .card:hover .emoji {
+  transform: scale(1.12);
+}
+
+.card-list.view-grid .card h2 {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 4px;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-list.view-grid .card p {
+  display: none; /* 그리드 모드에서는 3x3 전체 뷰포트 배치를 위해 숨김 */
+}
+
+.card-list.view-grid .card .meta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* 모바일 화면(iPhone SE, 375px)에서도 첫화면에 3x3이 시원하게 다 보이도록 최적화 */
+@media (max-width: 420px) {
+  .card-list.view-grid {
+    gap: 7px;
+  }
+  .card-list.view-grid .card {
+    padding: 10px 4px 8px;
+    min-height: 96px;
+    border-radius: 14px;
+  }
+  .card-list.view-grid .card .emoji {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .card-list.view-grid .card h2 {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  .card-list.view-grid .card .meta {
+    font-size: 9.5px;
+    padding: 1.5px 5px;
+  }
 }
 
 /* ---------- 질문 화면 ---------- */

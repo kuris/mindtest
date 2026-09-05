@@ -1,6 +1,21 @@
 /* translations/es.js — Español */
 window.MINDTEST_TRANS = {
   ui: {
+    'card.money.meta': "10 preguntas · 5 niveles",
+    'card.money.desc': "De compras por impulso a hábitos de ahorro: descubre tu personalidad financiera.",
+    'card.money.title': "Test de Estilo de Gasto",
+    'card.slang.meta': "10 preguntas · 5 niveles",
+    'card.slang.desc': "Descubre tu nivel de cultura pop y memes coreanos con 10 palabras virales.",
+    'card.slang.title': "Test de Jerga y Tendencias MZ",
+    'card.spelling.meta': "10 preguntas · Evaluación de nivel",
+    'card.spelling.desc': "Pon a prueba tu ortografía con las 10 palabras más confusas del coreano.",
+    'card.spelling.title': "Test de Ortografía Coreana",
+    'badge.money': "Índice de gasto: {v}%",
+    'kicker.money': "Resultado de Hábitos de Gasto y Dinero",
+    'kicker.slang': "Resultado del Test de Jerga Coreana MZ",
+    'kicker.spelling': "Resultado del Test de Ortografía Coreana",
+    'btn.view.list': "Ver tarjetas",
+    'btn.view.grid': "Cuadrícula 3×3",
     'site.brand':'MindTest','site.brand.mid':'Mind','site.brand.dot':'Test',
     'site.tagline':'Tests de psicología en 3 minutos','site.lede':'Sin registro. Sin instalación. Comparte resultados al instante.',
     'site.footer':'Tests de psicología divertidos','site.sister':'Sitio hermano',
@@ -20,6 +35,468 @@ window.MINDTEST_TRANS = {
     'card.tmi.title':'Test de tipo TMI','card.tmi.desc':'Profundidad, timing, reacción: 3 ejes que revelan tu estilo de conversación.','card.tmi.meta':'9 preguntas · 8 tipos'
   },
   tests: {
+    money: {
+      "title": "Test de Estilo de Gasto",
+      "subtitle": "10 preguntas · 5 niveles",
+      "shareText": "Mi resultado en el test de hábitos de dinero:",
+      "questions": [
+        {
+          "q": "Al ver online una prenda o artículo que te encanta:",
+          "a": [
+            "Pienso varios días si realmente lo necesito",
+            "Busco el mejor precio y cupones antes de decidir",
+            "¡Comprarlo ya ahorra tiempo! Pago de inmediato"
+          ]
+        },
+        {
+          "q": "Al pedir comida a domicilio con tarifa de envío cara:",
+          "a": [
+            "Me parece un desperdicio, voy a buscarla o cocino",
+            "Comparo otros sitios o busco envío gratis",
+            "El antojo manda, pido sin importar el envío"
+          ]
+        },
+        {
+          "q": "El día que ingresan tu sueldo o dinero:",
+          "a": [
+            "Transfiero de inmediato a ahorros y gastos fijos",
+            "Reviso el presupuesto del mes y tarjetas",
+            "¡Recompensa por mi esfuerzo! Comida rica o compras"
+          ]
+        },
+        {
+          "q": "Al ver ofertas de 2x1 o grandes liquidaciones:",
+          "a": [
+            "Las ignoro si no estaban en mi lista previa",
+            "Compruebo si es producto básico y su caducidad",
+            "¡No comprarlo es perder dinero! Directo a la cesta"
+          ]
+        },
+        {
+          "q": "A la hora de pagar una cena con amigos:",
+          "a": [
+            "Dividir la cuenta al céntimo exacto",
+            "Pagar con tarjeta con devolución y cobrar al resto",
+            "Si estoy de buen humor: \"¡Hoy invito yo!\""
+          ]
+        },
+        {
+          "q": "Tu hábito diario con café o bebidas:",
+          "a": [
+            "Termo propio o café gratis de casa/oficina",
+            "Cafeterías económicas o cupones de descuento",
+            "Cafés de autor o bebidas especiales de diseño"
+          ]
+        },
+        {
+          "q": "Tras un día de trabajo con mucho estrés:",
+          "a": [
+            "Ducha caliente, YouTube y dormir temprano",
+            "Un capricho dulce o comida reconfortante barata",
+            "¡Terapia de compras! Adquiero algo de mi lista de deseos"
+          ]
+        },
+        {
+          "q": "Gestión de suscripciones (streaming, telefonía):",
+          "a": [
+            "Cancelo lo que no use y uso tarifas baratas",
+            "Comparto cuentas con familia/amigos para ahorrar",
+            "Pago varias suscripciones activas aunque casi ni las vea"
+          ]
+        },
+        {
+          "q": "Al ver reclamos como \"Edición limitada / Últimas unidades\":",
+          "a": [
+            "Sé que es estrategia de marketing y pierdo interés",
+            "Investigo su valor real de reventa",
+            "El corazón se me acelera: ¡hay que comprarlo ya!"
+          ]
+        },
+        {
+          "q": "El papel más importante del dinero en tu vida:",
+          "a": [
+            "Un escudo de seguridad para un futuro tranquilo",
+            "Una herramienta para sostener una vida equilibrada",
+            "Un medio para disfrutar de la felicidad del presente"
+          ]
+        }
+      ],
+      "grades": [
+        {
+          "name": "Rey del Ahorro Acorazado",
+          "emoji": "🛡️",
+          "summary": "¡Defensa impenetrable! Maestro del ahorro.",
+          "desc": "Tu disciplina de gasto es legendaria. Las compras impulsivas no existen en tu vocabulario.",
+          "traits": [
+            "Recoge pedidos en mano para ahorrar gastos",
+            "Inmune a rebajas fuera de su lista",
+            "Ahorro primero el día de cobro",
+            "Domina ofertas y tarifas de bajo coste"
+          ],
+          "tip": "¡Finanzas impecables! Pero no olvides darte un pequeño capricho de vez en cuando."
+        },
+        {
+          "name": "Consumidor Inteligente",
+          "emoji": "📊",
+          "summary": "Estratega que exprime la relación calidad-precio.",
+          "desc": "Gastas con sensatez y ahorras con determinación. Aprovechas al máximo cada recurso sin privarte de calidad.",
+          "traits": [
+            "Experto en comparativas y ventajas de tarjetas",
+            "Firme ante lo innecesario, generoso con lo esencial",
+            "Analiza con calma las compras impulsivas",
+            "Comparte suscripciones de forma práctica"
+          ],
+          "tip": "¡El equilibrio perfecto! Sigue cultivando este hábito financiero tan saludable."
+        },
+        {
+          "name": "Equilibrista por Impulso",
+          "emoji": "⚖️",
+          "summary": "Frugal a diario, generoso cuando se anima.",
+          "desc": "En el día a día eres muy comedido, pero en ocasiones especiales abres la cartera con gusto.",
+          "traits": [
+            "Comidas económicas entre semana, cafés gourmet el fin de semana",
+            "Pequeños caprichos tras días duros",
+            "Se recupera rápido de pequeños deslices",
+            "Generoso con sus seres queridos"
+          ],
+          "tip": "Darse gustos es necesario, pero fijar un tope mensual de \"fondo capricho\" te dará más tranquilidad."
+        },
+        {
+          "name": "Expreso Cartera Vacía",
+          "emoji": "💸",
+          "summary": "¡Los pequeños caprichos dan sabor a la vida!",
+          "desc": "Es difícil resistirse a lo delicioso, bonito o exclusivo. Sabes disfrutar la vida con intensidad.",
+          "traits": [
+            "Filosofía de \"mejor comprarlo ahora\"",
+            "Suscripciones olvidadas cobrándose cada mes",
+            "Subidón de energía al abrir paquetes",
+            "Sorpresa al ver el extracto a fin de mes"
+          ],
+          "tip": "Disfrutar está genial, pero aparta automáticamente un 15% nada más cobrar en una cuenta cerrada."
+        },
+        {
+          "name": "Magnate del Carpe Diem",
+          "emoji": "👑",
+          "summary": "¡Apostando la cuenta de mañana a la felicidad de hoy!",
+          "desc": "¡Solo se vive una vez! Crees en invertir en la alegría del presente. Eres generoso y el alma de la fiesta.",
+          "traits": [
+            "\"¡Invito yo!\" le sale de forma natural",
+            "Abre la tarjeta ante cualquier edición limitada",
+            "Disfruta cada experiencia al máximo",
+            "Respira hondo antes de abrir la app del banco"
+          ],
+          "tip": "Una actitud vital fascinante, pero guarda un fondo de emergencia secreto bajo llave para dormir tranquilo."
+        }
+      ]
+    },
+    slang: {
+      "title": "Test de Jerga y Tendencias MZ",
+      "subtitle": "10 preguntas · 5 niveles",
+      "shareText": "Mi nivel de jerga y memes coreanos MZ:",
+      "questions": [
+        {
+          "q": "¿Qué significa \"중꺾마 (Jung-Kkeok-Ma)\"?",
+          "a": [
+            "Lo importante es un corazón que no se rinde",
+            "Un corazón que se rompió a medias",
+            "Experto en breakdance",
+            "Reconstruir una mente rota"
+          ]
+        },
+        {
+          "q": "¿Qué significa \"분좋카\"?",
+          "a": [
+            "Cafetería con buen ambiente (Bun-wi-gi joeun cafe)",
+            "Tarjeta de descuento en snacks",
+            "Tarjeta de manejo de ira",
+            "Buena cafetería en Bundang"
+          ]
+        },
+        {
+          "q": "¿Qué es una persona \"핑프\"?",
+          "a": [
+            "Alguien que pregunta todo sin molestarse en buscar",
+            "Alguien obsesionado con el color rosa",
+            "Experto en tenis de mesa",
+            "Alguien enamorado"
+          ]
+        },
+        {
+          "q": "¿Qué significa \"캘박\"?",
+          "a": [
+            "Agendar y fijar una cita en el calendario",
+            "Un amigo apellidado Park en California",
+            "Caligrafía colgada en la pared",
+            "Clavar el calendario en la pared"
+          ]
+        },
+        {
+          "q": "¿Qué es vivir una \"갓생 (God-Saeng)\"?",
+          "a": [
+            "Llevar una vida productiva y ejemplar",
+            "Llevar una vida religiosa devota",
+            "Vivir como un sabio antiguo",
+            "Vivir inocentemente como un bebé"
+          ]
+        },
+        {
+          "q": "¿Cómo se llama la estética o vibra que uno aspira a tener?",
+          "a": [
+            "추구미 (Chu-Gu-Mi)",
+            "추석미",
+            "가을미",
+            "축구미"
+          ]
+        },
+        {
+          "q": "¿Qué palabra se usa cuando alguien es atacado o criticado injustamente?",
+          "a": [
+            "억까 (Crítica injusta forzada)",
+            "억텐 (Ánimo forzado)",
+            "억바",
+            "억플"
+          ]
+        },
+        {
+          "q": "¿Qué significa \"알잘딱깔센\"?",
+          "a": [
+            "Hacer las cosas con iniciativa, pulcritud y buen gusto",
+            "Alguien frío y exigente",
+            "Despertarse con disciplina",
+            "Persona ahorradora y formal"
+          ]
+        },
+        {
+          "q": "¿Cómo se llama cariñosamente a la etapa de coqueteo antes de ser pareja (4)?",
+          "a": [
+            "삼귀다 (Etapa 3 previa al 4)",
+            "이귀다",
+            "일귀다",
+            "썸귀다"
+          ]
+        },
+        {
+          "q": "¿Qué expresión de moda se usa para decir \"¡Pienso exactamente igual!\"?",
+          "a": [
+            "디토 (Ditto)",
+            "리또",
+            "카토",
+            "미토"
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "El Algoritmo en Persona",
+          "emoji": "🦄",
+          "summary": "¡10/10! Creador nato de tendencias y memes.",
+          "desc": "Vives y respiras la cultura viral. Adoptas los nuevos modismos antes de que se vuelvan virales.",
+          "traits": [
+            "Adopta nuevas jergas al instante",
+            "Conoce el origen de todos los memes",
+            "Referente de tendencias en su grupo",
+            "Humor ágil e ingenioso"
+          ],
+          "tip": "Sentido del humor brillante. Solo ten paciencia con tus amigos más desconectados."
+        },
+        {
+          "name": "Marcador de Tendencias",
+          "emoji": "✨",
+          "summary": "¡Top 10%! Muy atento a la cultura pop y redes.",
+          "desc": "Estás al día con las redes sociales y sabes incorporar expresiones de moda en el momento justo.",
+          "traits": [
+            "Domina el algoritmo de videos cortos",
+            "Rápido para asimilar novedades",
+            "El alma animada de los grupos",
+            "Elogiado por su espíritu juvenil"
+          ],
+          "tip": "Excelente radar cultural. Es un placer conversar contigo."
+        },
+        {
+          "name": "Navegante Cotidiano",
+          "emoji": "☕",
+          "summary": "Promedio equilibrado. Entiende todo lo que escucha.",
+          "desc": "Quizá no uses todas las palabras en voz alta, pero captas las referencias al instante.",
+          "traits": [
+            "Conoce los memes más populares",
+            "Le da algo de pudor usarlos al hablar",
+            "Sigue las tendencias en silencio",
+            "Capta el contexto sin esfuerzo"
+          ],
+          "tip": "Un equilibrio estupendo. Tu intuición te permite seguir cualquier charla."
+        },
+        {
+          "name": "Rezagado de Memes",
+          "emoji": "🐢",
+          "summary": "Se entera del significado cuando el meme ya pasó de moda.",
+          "desc": "A menudo preguntas \"¿qué significa eso?\" tras las risas. Valoras el humor clásico más que las modas pasajeras.",
+          "traits": [
+            "Busca en Google las siglas desconocidas",
+            "Empieza a usar jergas cuando ya expiran",
+            "Prefiere frases completas",
+            "Disfruta chistes y humor nostálgico"
+          ],
+          "tip": "No hay prisa alguna. La calidez humana vale mucho más que las jergas del momento."
+        },
+        {
+          "name": "Clásico Analógico Puro",
+          "emoji": "🗿",
+          "summary": "Santuario libre de modismos de internet.",
+          "desc": "No te dejas arrastrar por abreviaturas extrañas. Hablas con vocabulario pulcro, firme y tradicional.",
+          "traits": [
+            "La jerga de internet le suena a otro idioma",
+            "Prefiere oraciones completas y correctas",
+            "Rechaza las abreviaturas innecesarias",
+            "Transmite elegancia clásica"
+          ],
+          "tip": "No necesitas jerga moderna para brillar. Tu forma de expresarte es una cualidad única."
+        }
+      ]
+    },
+    spelling: {
+      "title": "Test de Ortografía Coreana",
+      "subtitle": "10 preguntas · Evaluación de nivel",
+      "shareText": "Mi resultado en el test de ortografía coreana:",
+      "questions": [
+        {
+          "q": "¿Cuál es la ortografía correcta para \"durante varios días\"?",
+          "a": [
+            "며칠 동안",
+            "몇일 동안"
+          ]
+        },
+        {
+          "q": "Expresión correcta para \"quedarse sin palabras / absurdo\":",
+          "a": [
+            "어이없다",
+            "어의없다"
+          ]
+        },
+        {
+          "q": "Cómo escribir correctamente \"¡Nos vemos mañana!\":",
+          "a": [
+            "내일 봬요!",
+            "내일 뵈요!"
+          ]
+        },
+        {
+          "q": "Expresión correcta para \"ahora no se puede\":",
+          "a": [
+            "지금은 안 돼요",
+            "지금은 안 되요"
+          ]
+        },
+        {
+          "q": "Palabra que significa \"extraordinario, curioso, fascinante\":",
+          "a": [
+            "희한하다",
+            "희안하다"
+          ]
+        },
+        {
+          "q": "Expresión para \"en un abrir y cerrar de ojos, enseguida\":",
+          "a": [
+            "금세 다 먹었네",
+            "금새 다 먹었네"
+          ]
+        },
+        {
+          "q": "Palabra que significa \"de alguna manera / por alguna razón\":",
+          "a": [
+            "왠지 좋은 일이 생길 것 같아",
+            "웬지 좋은 일이 생길 것 같아"
+          ]
+        },
+        {
+          "q": "Para \"la verdad salió a la luz del mundo\":",
+          "a": [
+            "진실이 세상에 드러났다",
+            "진실이 세상에 들어났다"
+          ]
+        },
+        {
+          "q": "Presentar un documento al jefe para su aprobación oficial:",
+          "a": [
+            "서류 결재를 올렸다 (Aprobación)",
+            "서류 결제를 올렸다 (Pago)"
+          ]
+        },
+        {
+          "q": "Elige la forma correcta para \"el más adecuado\":",
+          "a": [
+            "알맞은",
+            "알맞는"
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Miembro de Honor del Instituto de la Lengua",
+          "emoji": "👑",
+          "summary": "¡10/10 perfecto! Guardián absoluto de la norma lingüística.",
+          "desc": "No caíste en ninguna trampa. Tienes vista de lince para detectar faltas de ortografía.",
+          "traits": [
+            "Cero confusión en pares difíciles",
+            "Detectar una errata te activa una alarma interna",
+            "Aprecia la elegancia en la escritura",
+            "Diccionario andante para tus amigos"
+          ],
+          "tip": "¡Impecable nivel! Solo recuerda relajarte un poco en conversaciones informales."
+        },
+        {
+          "name": "Corrector Humano de Textos",
+          "emoji": "🔍",
+          "summary": "¡Top 10%! Gran dominio y precisión gramatical.",
+          "desc": "Superaste con éxito preguntas que confunden incluso a nativos. Tus textos inspiran total confianza.",
+          "traits": [
+            "Cero dudas al redactar correos formales",
+            "Responde al instante preguntas complejas",
+            "Nota discretamente las erratas ajenas",
+            "Gana respeto por su precisión"
+          ],
+          "tip": "El fallo puntual fue pura prisa. Tu nivel está en la élite."
+        },
+        {
+          "name": "Comunicador Cotidiano Fluido",
+          "emoji": "💬",
+          "summary": "Nivel medio sólido. Comunicación perfecta en el día a día.",
+          "desc": "Sigues las reglas con naturalidad y solo dudas ante trampas muy rebuscadas.",
+          "traits": [
+            "Comunicación clara y sin malentendidos",
+            "Busca de vez en cuando para verificar",
+            "Prefiere fluidez a correcciones pedantes",
+            "Comprende rápidamente el contexto"
+          ],
+          "tip": "Repasar un par de palabras clave te catapultará al nivel superior."
+        },
+        {
+          "name": "Chateador Intuitivo Rápido",
+          "emoji": "⚡",
+          "summary": "¡Mientras se entienda el mensaje, todo vale!",
+          "desc": "Escribes por instinto y sonido. La velocidad y la expresividad van primero que las normas.",
+          "traits": [
+            "Los dedos van más rápido que el autocorrector",
+            "Muchas líneas rojas en el chat",
+            "Separa palabras cuando toma aire",
+            "Amante de la mensajería dinámica"
+          ],
+          "tip": "Echa una mirada rápida antes de enviar documentos oficiales o solicitudes de empleo."
+        },
+        {
+          "name": "El Rey Sejong Sorprendido",
+          "emoji": "🛸",
+          "summary": "¡El mismísimo Rey Sejong querría venir a repasar el alfabeto!",
+          "desc": "¡Un espíritu libre de la ortografía! Tus amigos necesitan descifrar tus textos, pero la diversión nunca falta.",
+          "traits": [
+            "Decide la ortografía a cara o cruz",
+            "Espera que los demás le lean la mente",
+            "Crea fórmulas de escritura únicas",
+            "Estilo completamente desinhibido"
+          ],
+          "tip": "¡Sin vergüenza alguna! Recordar las 10 preguntas de hoy duplicará tu nivel."
+        }
+      ]
+    },
     love: {
       title:'Test de estilo de amor', subtitle:'12 preguntas · 16 tipos', shareText:'¡Acabo de hacer el test de estilo de amor! ¡Pruébalo tú también!',
       questions:[

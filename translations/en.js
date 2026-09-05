@@ -1,6 +1,21 @@
 /* translations/en.js — English */
 window.MINDTEST_TRANS = {
   ui: {
+    'card.money.meta': "10 questions · 5 levels",
+    'card.money.desc': "From shopping impulse to payday habits: evaluate your money style across 10 questions.",
+    'card.money.title': "Spending Style Test",
+    'card.slang.meta': "10 questions · 5 levels",
+    'card.slang.desc': "Test your internet culture and trend knowledge with 10 viral slang terms.",
+    'card.slang.title': "MZ Slang & Trend Test",
+    'card.spelling.meta': "10 questions · Grade evaluation",
+    'card.spelling.desc': "Test your Korean spelling with 10 commonly confused word pairs.",
+    'card.spelling.title': "Spelling Test",
+    'badge.money': "Spending index: {v}%",
+    'kicker.money': "Money & Spending Style Result",
+    'kicker.slang': "MZ Slang & Trend Test Result",
+    'kicker.spelling': "Korean Spelling Test Result",
+    'btn.view.list': "Card List",
+    'btn.view.grid': "3×3 Grid",
     /* site */
     'site.brand':        'MindTest',
     'site.brand.mid':    'Mind',
@@ -56,6 +71,468 @@ window.MINDTEST_TRANS = {
   },
 
   tests: {
+    money: {
+      "title": "Spending Style Test",
+      "subtitle": "10 questions · 5 levels",
+      "shareText": "My spending style money tier:",
+      "questions": [
+        {
+          "q": "When you spot an item you like online:",
+          "a": [
+            "Think for days whether I truly need it",
+            "Search for lowest price & coupons first",
+            "\"Buying it sooner saves time!\" Order right away"
+          ]
+        },
+        {
+          "q": "When food delivery has a $4 delivery fee:",
+          "a": [
+            "Walk to pick it up or cook at home",
+            "Compare other restaurants or reach free delivery min",
+            "Order anyway — craving comes first"
+          ]
+        },
+        {
+          "q": "On payday when money arrives:",
+          "a": [
+            "Auto-transfer into savings and fixed expenses first",
+            "Check monthly budget and upcoming card bills",
+            "Reward myself with great food or shopping!"
+          ]
+        },
+        {
+          "q": "When seeing \"Buy 1 Get 1 Free\" sales:",
+          "a": [
+            "Ignore unless already on my shopping list",
+            "Check expiration date & buy if it's a staple",
+            "\"It's a loss not to buy!\" Put it in the cart"
+          ]
+        },
+        {
+          "q": "When paying at a dinner with friends:",
+          "a": [
+            "Split bill precisely down to the penny",
+            "Pay with cash-back card and collect transfers",
+            "\"I've got this!\" Pay for everyone on impulse"
+          ]
+        },
+        {
+          "q": "Your daily coffee/beverage habit:",
+          "a": [
+            "Tumbler or free office/home coffee",
+            "Affordable discount coffee or coupon apps",
+            "Aesthetic cafes or $7 specialty drinks"
+          ]
+        },
+        {
+          "q": "After an extremely stressful workday:",
+          "a": [
+            "Warm shower, YouTube, and sleep early",
+            "A small tests: {0 treat or comfort snack",
+            "\"Retail therapy!\" Splurge on wish-list items"
+          ]
+        },
+        {
+          "q": "Managing streaming services and phone plan:",
+          "a": [
+            "Budget phone carrier & cancel unused streaming immediately",
+            "Share accounts with family/friends to save",
+            "Multiple active subscriptions even if rarely watched"
+          ]
+        },
+        {
+          "q": "When seeing \"Limited Edition / Last Chance!\":",
+          "a": [
+            "Know it's marketing and lose interest",
+            "Check secondhand resale value carefully",
+            "Heart races — buy before it sells out!"
+          ]
+        },
+        {
+          "q": "The most important role of money in your life:",
+          "a": [
+            "A shield providing safety and peaceful future",
+            "A tool to maintain daily balance and stability",
+            "A means to enjoy present happiness and unique memories"
+          ]
+        }
+      ],
+      "grades": [
+        {
+          "name": "Iron-Shield Saver",
+          "emoji": "🛡️",
+          "summary": "Impenetrable defense! Master of frugal living.",
+          "desc": "Your spending discipline is legendary. Impulsive purchases do not exist in your vocabulary. You turn pennies into solid financial castles.",
+          "traits": [
+            "Picks up takeout to save on delivery fees",
+            "Immune to sales unless pre-planned",
+            "Savings first on payday",
+            "Master of rewards and budget phone plans"
+          ],
+          "tip": "Your wealth management is top notch! But do not forget to treat yourself once in a while."
+        },
+        {
+          "name": "Smart Consumer",
+          "emoji": "📊",
+          "summary": "Strategic spender who masters value and perks.",
+          "desc": "You spend thoughtfully and save decisively. By comparing prices and utilizing perks, you extract maximum happiness from every dollar.",
+          "traits": [
+            "Price comparison and cashback expert",
+            "Bold on essentials, strict on waste",
+            "Keeps impulse purchases within return window",
+            "Shares subscriptions smartly"
+          ],
+          "tip": "The ideal balanced spender. Keep up this healthy and rewarding financial rhythm!"
+        },
+        {
+          "name": "Mood-Wave Balancer",
+          "emoji": "⚖️",
+          "summary": "Frugal on weekdays, generous when inspired.",
+          "desc": "You live sensibly day to day, but open your wallet happily for special occasions and loved ones. A pragmatic and relatable spender.",
+          "traits": [
+            "Economy lunches on weekdays, cafe tours on weekends",
+            "Small comfort treats after rough days",
+            "Recovers quickly from budget slip-ups",
+            "Never stingy with good friends"
+          ],
+          "tip": "Small splurges bring joy, but setting a designated monthly \"fun fund\" keeps you safe."
+        },
+        {
+          "name": "Empty-Wallet Express",
+          "emoji": "💸",
+          "summary": "Little splurges are life's spice! Paychecks pass right through.",
+          "desc": "You fall easily for cute items, delicious food, and limited editions. You know how to make life vibrant and fun.",
+          "traits": [
+            "\"Buy now, regret never\" philosophy",
+            "Multiple subscriptions quietly charging every month",
+            "Endorphin rush when unboxing parcels",
+            "Mystified by credit card statements at month end"
+          ],
+          "tip": "Enjoying life is great, but try setting an automatic 15% transfer into a locked savings account right on payday!"
+        },
+        {
+          "name": "YOLO High-Roller",
+          "emoji": "👑",
+          "summary": "Betting tomorrow's bank account on today's happiness!",
+          "desc": "You only live once! You believe in investing in the joy of the present. Generous with friends, you are the life of the party.",
+          "traits": [
+            "\"It's on me today!\" comes naturally",
+            "Checkout opens the moment limited editions appear",
+            "Lives life to the absolute fullest",
+            "Takes a deep breath before opening card bills"
+          ],
+          "tip": "A wonderfully passionate way to live! Just keep a secret emergency fortress fund locked away for peace of mind."
+        }
+      ]
+    },
+    slang: {
+      "title": "MZ Slang & Trend Test",
+      "subtitle": "10 questions · 5 levels",
+      "shareText": "My Korean MZ slang trend level:",
+      "questions": [
+        {
+          "q": "What does \"중꺾마 (Jung-Kkeok-Ma)\" mean?",
+          "a": [
+            "An unyielding, unbreakable heart",
+            "A heart that broke halfway",
+            "Breakdance master",
+            "Resetting a broken mindset"
+          ]
+        },
+        {
+          "q": "What does \"분좋카 (Bun-Joh-Ka)\" stand for?",
+          "a": [
+            "Cafe with great atmosphere (Bungi Joeun Cafe)",
+            "Snack bar discount card",
+            "Anger management card",
+            "Best cafe in Bundang"
+          ]
+        },
+        {
+          "q": "What is a \"핑프 (Ping-Peu)\"?",
+          "a": [
+            "Finger Princess/Prince (asks before searching)",
+            "Someone obsessed with pink outfits",
+            "Table tennis pro",
+            "Someone in sweet pink love"
+          ]
+        },
+        {
+          "q": "What does \"캘박 (Kael-Bak)\" mean?",
+          "a": [
+            "Pinning/saving an event on the calendar",
+            "A friend named Park in California",
+            "Calligraphy hung on wall",
+            "Nailing a calendar to the wall"
+          ]
+        },
+        {
+          "q": "What does living a \"갓생 (God-Saeng)\" mean?",
+          "a": [
+            "Living a productive and exemplary life",
+            "Living a deeply religious life",
+            "Living like an ancient noble scholar",
+            "Living innocently like a newborn"
+          ]
+        },
+        {
+          "q": "What does \"추구미 (Chu-Gu-Mi)\" mean?",
+          "a": [
+            "The aesthetic / vibe one aspires to",
+            "Autumn beauty",
+            "Excitement for Chuseok holiday",
+            "The charm of a soccer midfielder"
+          ]
+        },
+        {
+          "q": "What slang is used when someone is unfairly targeted or nitpicked?",
+          "a": [
+            "억까 (Eok-Kka / unfair bashing)",
+            "억텐 (Eok-Ten / forced tension)",
+            "억바 (Eok-Ba)",
+            "억플 (Eok-Peul)"
+          ]
+        },
+        {
+          "q": "What does \"알잘딱깔센 (Al-Jal-Ttak-Kkal-Sen)\" mean?",
+          "a": [
+            "Doing things smartly, cleanly, and with good sense",
+            "Someone cold and strict",
+            "Sharp alarm clock discipline",
+            "Frugal and stylish person"
+          ]
+        },
+        {
+          "q": "What is the cute term for the \"talking stage\" before dating (4-gwi-da)?",
+          "a": [
+            "삼귀다 (Sam-gwi-da / 3-gwi-da)",
+            "이귀다 (2-gwi-da)",
+            "일귀다 (1-gwi-da)",
+            "썸귀다"
+          ]
+        },
+        {
+          "q": "What expression is used to say \"I feel exactly the same way!\"?",
+          "a": [
+            "디토 (Ditto)",
+            "리또 (Ritto)",
+            "카토 (Katto)",
+            "미토 (Mitto)"
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "The Algorithm Incarnate",
+          "emoji": "🦄",
+          "summary": "10/10! The creator of trends and memes.",
+          "desc": "You live and breathe viral culture. You pick up new slang before it even hits mainstream social media.",
+          "traits": [
+            "Adopts brand-new slang effortlessly",
+            "Knows meme origin stories and audio samples",
+            "The trend-bringer among your friends",
+            "Brisk and witty texting banter"
+          ],
+          "tip": "Super high trend sense! Just pace yourself so your slower friends can keep up."
+        },
+        {
+          "name": "Trendsetter",
+          "emoji": "✨",
+          "summary": "Top 10%! Incredibly sensitive to pop culture trends.",
+          "desc": "You stay up to date with internet memes and viral videos. Whenever a new term drops, you know how to use it with style.",
+          "traits": [
+            "Conquered short-form video algorithms",
+            "Fast to adopt fun new expressions",
+            "Brings laughter to group chats",
+            "Praised for youthful sensibility"
+          ],
+          "tip": "Great cultural radar! You are always fun to talk to."
+        },
+        {
+          "name": "Modern Regular",
+          "emoji": "☕",
+          "summary": "Balanced average! Understands everything you hear.",
+          "desc": "You might not say all the slang out loud, but you get the reference immediately. Great bridge between generations.",
+          "traits": [
+            "Knows famous memes and popular slang",
+            "Slightly shy to say slang out loud",
+            "Quietly follows trends on social media",
+            "Effortlessly catches conversation context"
+          ],
+          "tip": "A very healthy balance! Your natural intuition carries you through any talk."
+        },
+        {
+          "name": "Trend Latecomer",
+          "emoji": "🐢",
+          "summary": "Finds out what a meme meant right after it expires.",
+          "desc": "You often ask \"Wait, what does that mean?\" after everyone laughs. You appreciate classic humor more than lightning-fast new slang.",
+          "traits": [
+            "Secretly searches new acronyms on Google",
+            "Starts using slang right when it fades out",
+            "Prefers full words over clipped syllables",
+            "Loves nostalgic vintage comedy lines"
+          ],
+          "tip": "No rush at all! Warm, authentic conversation is always timeless."
+        },
+        {
+          "name": "Pure Analog Classic",
+          "emoji": "🗿",
+          "summary": "Pristine slang-free sanctuary of proper speech.",
+          "desc": "You stand tall with standard vocabulary in a world overflowing with internet jargon. Traditional, grounded, and dignified.",
+          "traits": [
+            "Internet slang sounds like a foreign language",
+            "Prefers clear, complete sentences",
+            "Unyielding respect for classic words",
+            "Exudes vintage classic charm"
+          ],
+          "tip": "You do not need internet slang to thrive. Your polished speech is a rare superpower!"
+        }
+      ]
+    },
+    spelling: {
+      "title": "Korean Spelling Test",
+      "subtitle": "10 questions · Grade evaluation",
+      "shareText": "My Korean spelling test result",
+      "questions": [
+        {
+          "q": "Which is the correct Korean spelling?",
+          "a": [
+            "며칠 동안 (for several days)",
+            "몇일 동안"
+          ]
+        },
+        {
+          "q": "When feeling dumbfounded or shocked:",
+          "a": [
+            "어이없다",
+            "어의없다"
+          ]
+        },
+        {
+          "q": "Saying \"See you tomorrow!\":",
+          "a": [
+            "내일 봬요!",
+            "내일 뵈요!"
+          ]
+        },
+        {
+          "q": "Expressing \"It is not allowed right now\":",
+          "a": [
+            "지금은 안 돼요",
+            "지금은 안 되요"
+          ]
+        },
+        {
+          "q": "Meaning \"extraordinary, strange, fascinating\":",
+          "a": [
+            "희한하다",
+            "희안하다"
+          ]
+        },
+        {
+          "q": "Meaning \"in the blink of an eye, very quickly\":",
+          "a": [
+            "금세 다 먹었네",
+            "금새 다 먹었네"
+          ]
+        },
+        {
+          "q": "Meaning \"somehow / for some reason\":",
+          "a": [
+            "왠지 좋은 일이 생길 것 같아",
+            "웬지 좋은 일이 생길 것 같아"
+          ]
+        },
+        {
+          "q": "When hidden truth is revealed to the world:",
+          "a": [
+            "진실이 세상에 드러났다",
+            "진실이 세상에 들어났다"
+          ]
+        },
+        {
+          "q": "Submitting a business report to your manager for approval:",
+          "a": [
+            "서류 결재를 올렸다",
+            "서류 결제를 올렸다"
+          ]
+        },
+        {
+          "q": "Select the most ( ) answer:",
+          "a": [
+            "알맞은",
+            "알맞는"
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "National Language Institute Fellow",
+          "emoji": "👑",
+          "summary": "Perfect 10/10! Absolute guardian of language rules.",
+          "desc": "You did not miss a single trick question. You have an eagle eye for typos and text accuracy.",
+          "traits": [
+            "Zero confusion on tricky spelling pairs",
+            "Spotted typos trigger internal sirens",
+            "Appreciates elegance in written text",
+            "Walking dictionary for friends"
+          ],
+          "tip": "Flawless spelling! Just remember you can relax a bit when casual texting with friends."
+        },
+        {
+          "name": "Human Spell Checker",
+          "emoji": "🔍",
+          "summary": "Top 10%! Highly proficient grammar expert.",
+          "desc": "You breezed through words that trip up most native speakers. Your messages always inspire confidence.",
+          "traits": [
+            "Zero worries when writing professional emails",
+            "Solves tricky spelling questions with ease",
+            "Quietly notices typos in messages",
+            "Gains trust through accurate diction"
+          ],
+          "tip": "You missed one or two only due to rushing. Your language sense is top tier."
+        },
+        {
+          "name": "Fluent Everyday Communicator",
+          "emoji": "💬",
+          "summary": "Solid average! Completely fluent in daily life.",
+          "desc": "You follow standard rules with ease, only hesitating at notoriously confusing word pairs. Your communication is clear and effortless.",
+          "traits": [
+            "Smooth communication with no misunderstandings",
+            "Occasionally does a quick search when unsure",
+            "Values flow over pedantic grammar policing",
+            "Quick to grasp context and intent"
+          ],
+          "tip": "Reviewing a couple of common trap words is all it takes to reach the top tier."
+        },
+        {
+          "name": "Intuitive Fast-Texter",
+          "emoji": "⚡",
+          "summary": "As long as the meaning gets across, it is fine!",
+          "desc": "You write by sound and instinct. Meaning comes first, formal rules come second. Fast, lively, and spontaneous.",
+          "traits": [
+            "Fingers fly faster than grammar filters",
+            "Auto-correct shows squiggly lines often",
+            "Spaces words whenever you pause for breath",
+            "Loves fast-paced instant messaging"
+          ],
+          "tip": "Consider a quick proofread before sending official work emails or resumes."
+        },
+        {
+          "name": "King Sejong in Shock",
+          "emoji": "🛸",
+          "summary": "King Sejong might come back to re-explain Hangeul!",
+          "desc": "A total free spirit in spelling! Your friends might need a cipher key to read your texts, but the vibe is always there.",
+          "traits": [
+            "Picks spelling by coin toss",
+            "Expects readers to read your mind",
+            "Creative and unique text interpretations",
+            "Inventive communication style"
+          ],
+          "tip": "No worries at all! Just remembering today's 10 questions will double your spelling skills."
+        }
+      ]
+    },
 
     /* ══════════════════════════════════════════════
        LOVE STYLE TEST
