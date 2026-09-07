@@ -337,20 +337,23 @@
     }
 
     // 8-1. 패밀리 서비스 드롭다운
-    var famWrap = document.createElement('div');
-    famWrap.className = 'family-nav-wrap';
-    famWrap.innerHTML = [
-      '<button type="button" class="family-btn" id="family-btn">',
-      '  다른 놀자 서비스 <span style="font-size: 10px; margin-left: 2px;">▾</span>',
-      '</button>',
-      '<div class="family-dropdown" id="family-dropdown">',
-      '  <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>',
-      '  <a href="https://voca.chatgpts.kr" target="_blank" rel="noopener"><span>⚡</span> <span>단어야 놀자</span></a>',
-      '  <a href="https://fortune.chatgpts.kr" target="_blank" rel="noopener"><span>🔮</span> <span>운세야 놀자</span></a>',
-      '  <a href="https://chatgpts.kr" target="_blank" rel="noopener"><span>🏠</span> <span>chatgpts.kr</span></a>',
-      '</div>'
-    ].join('');
-    actions.appendChild(famWrap);
+    var famWrap = actions.querySelector('.family-nav-wrap');
+    if (!famWrap) {
+      famWrap = document.createElement('div');
+      famWrap.className = 'family-nav-wrap';
+      famWrap.innerHTML = [
+        '<button type="button" class="family-btn" id="family-btn">',
+        '  다른 놀자 서비스 <span style="font-size: 10px; margin-left: 2px;">▾</span>',
+        '</button>',
+        '<div class="family-dropdown" id="family-dropdown">',
+        '  <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>',
+        '  <a href="https://voca.chatgpts.kr" target="_blank" rel="noopener"><span>⚡</span> <span>단어야 놀자</span></a>',
+        '  <a href="https://fortune.chatgpts.kr" target="_blank" rel="noopener"><span>🔮</span> <span>운세야 놀자</span></a>',
+        '  <a href="https://chatgpts.kr" target="_blank" rel="noopener"><span>🏠</span> <span>chatgpts.kr</span></a>',
+        '</div>'
+      ].join('');
+      actions.insertBefore(famWrap, actions.firstChild);
+    }
 
     var famBtn = famWrap.querySelector('#family-btn');
     var famDrop = famWrap.querySelector('#family-dropdown');

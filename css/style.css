@@ -195,10 +195,7 @@ a { color: var(--key-dark); }
 }
 
 #lang-switcher {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   z-index: 100;
 }
