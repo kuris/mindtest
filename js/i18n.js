@@ -321,13 +321,41 @@
     });
   }
 
-  /* 8. 언어 스위처 UI 주입 */
+  /* 8. 언어 스위처 및 패밀리 서비스 UI 주입 */
   function injectSwitcher() {
     var head = document.querySelector('.site-head');
     if (!head || document.getElementById('lang-switcher')) return;
 
     var currentLang = isKo ? 'ko' : lang;
 
+    var actions = document.getElementById('head-actions');
+    if (!actions) {
+      actions = document.createElement('div');
+      actions.id = 'head-actions';
+      actions.className = 'site-head-actions';
+      head.appendChild(actions);
+    }
+
+    // 8-1. 패밀리 서비스 드롭다운
+    var famWrap = document.createElement('div');
+    famWrap.className = 'family-nav-wrap';
+    famWrap.innerHTML = [
+      '<button type="button" class="family-btn" id="family-btn">',
+      '  다른 놀자 서비스 <span style="font-size: 10px; margin-left: 2px;">▾</span>',
+      '</button>',
+      '<div class="family-dropdown" id="family-dropdown">',
+      '  <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>',
+      '  <a href="https://voca.chatgpts.kr" target="_blank" rel="noopener"><span>⚡</span> <span>단어야 놀자</span></a>',
+      '  <a href="https://fortune.chatgpts.kr" target="_blank" rel="noopener"><span>🔮</span> <span>운세야 놀자</span></a>',
+      '  <a href="https://chatgpts.kr" target="_blank" rel="noopener"><span>🏠</span> <span>chatgpts.kr</span></a>',
+      '</div>'
+    ].join('');
+    actions.appendChild(famWrap);
+
+    var famBtn = famWrap.querySelector('#family-btn');
+    var famDrop = famWrap.querySelector('#family-dropdown');
+
+    // 8-2. 언어 스위처
     var wrapper = document.createElement('div');
     wrapper.id = 'lang-switcher';
     wrapper.setAttribute('aria-label', 'Language switcher');
@@ -343,6 +371,18 @@
     dropdown.id = 'lang-dropdown';
     dropdown.setAttribute('role', 'listbox');
     dropdown.hidden = true;
+
+    famBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var willOpen = !famDrop.classList.contains('show');
+      dropdown.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      if (willOpen) {
+        famDrop.classList.add('show');
+      } else {
+        famDrop.classList.remove('show');
+      }
+    });
 
     var allLangs = ['ko', 'en', 'ja', 'zh', 'es', 'pt'];
     allLangs.forEach(function (l) {
@@ -376,6 +416,7 @@
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
+      famDrop.classList.remove('show');
       var open = !dropdown.hidden;
       dropdown.hidden = open;
       btn.setAttribute('aria-expanded', String(!open));
@@ -384,11 +425,12 @@
     document.addEventListener('click', function () {
       dropdown.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
+      famDrop.classList.remove('show');
     });
 
     wrapper.appendChild(btn);
     wrapper.appendChild(dropdown);
-    head.appendChild(wrapper);
+    actions.appendChild(wrapper);
   }
 
   function patchAll() {

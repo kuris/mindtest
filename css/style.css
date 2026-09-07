@@ -114,7 +114,86 @@ a { color: var(--key-dark); }
 }
 .site-head .dot { color: var(--key); }
 
-/* 언어 스위처 */
+/* 헤더 우측 액션 영역 & 언어/패밀리 스위처 */
+.site-head-actions {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 100;
+}
+.site-head-actions #lang-switcher {
+  position: static;
+  transform: none;
+}
+
+.family-nav-wrap {
+  position: relative;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.family-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  background: #ffffff;
+  border: 1.5px solid #6D28D9;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6D28D9;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(109, 40, 217, 0.08);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.family-btn:hover {
+  background: #f5f3ff;
+  border-color: #5B21B6;
+  color: #5B21B6;
+  box-shadow: 0 3px 8px rgba(109, 40, 217, 0.15);
+}
+.family-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 155px;
+  background: #ffffff;
+  border: 1px solid rgba(109, 40, 217, 0.15);
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  z-index: 1000;
+  display: none;
+}
+.family-dropdown.show {
+  display: block;
+  animation: familyFadeIn 0.18s ease-out;
+}
+@keyframes familyFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.family-dropdown a {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink, #2B2520) !important;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.family-dropdown a:hover {
+  background: #f5f3ff;
+  color: #6D28D9 !important;
+}
+
 #lang-switcher {
   position: absolute;
   right: 0;
@@ -195,6 +274,8 @@ a { color: var(--key-dark); }
   background: var(--key-soft);
 }
 @media (max-width: 480px) {
+  .site-head { justify-content: flex-start; }
+  .family-btn { padding: 5px 8px; font-size: 12px; }
   #lang-btn .lang-name { display: none; }
   #lang-btn { padding: 6px 8px; }
 }
