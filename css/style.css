@@ -135,61 +135,66 @@ a { color: var(--key-dark); }
 .family-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 5px 12px;
-  background: #ffffff;
-  border: 1.5px solid #6D28D9;
-  border-radius: 9999px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #6D28D9;
+  gap: 5px;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(109, 40, 217, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 .family-btn:hover {
-  background: #f5f3ff;
-  border-color: #5B21B6;
-  color: #5B21B6;
-  box-shadow: 0 3px 8px rgba(109, 40, 217, 0.15);
+  background: #ffffff;
+  color: var(--ink);
+  border-color: var(--key);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+.family-btn .family-arrow {
+  font-size: 10px;
+  opacity: 0.6;
+  transition: transform 0.2s ease;
 }
 .family-dropdown {
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
   min-width: 155px;
-  background: #ffffff;
-  border: 1px solid rgba(109, 40, 217, 0.15);
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  margin: 0;
   padding: 6px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  list-style: none;
   z-index: 1000;
   display: none;
 }
 .family-dropdown.show {
   display: block;
-  animation: familyFadeIn 0.18s ease-out;
-}
-@keyframes familyFadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  animation: langFadeIn 0.15s ease-out;
 }
 .family-dropdown a {
   display: flex !important;
   align-items: center;
   gap: 8px;
-  padding: 8px 10px;
-  border-radius: 8px;
+  padding: 7px 10px;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--ink, #2B2520) !important;
+  font-weight: 500;
+  color: var(--ink) !important;
   text-decoration: none;
-  transition: background 0.15s ease;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 .family-dropdown a:hover {
-  background: #f5f3ff;
-  color: #6D28D9 !important;
+  background: var(--key-soft) !important;
+  color: var(--key-dark) !important;
 }
 
 #lang-switcher {

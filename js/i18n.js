@@ -343,7 +343,7 @@
       famWrap.className = 'family-nav-wrap';
       famWrap.innerHTML = [
         '<button type="button" class="family-btn" id="family-btn">',
-        '  다른 놀자 서비스 <span style="font-size: 10px; margin-left: 2px;">▾</span>',
+        '  다른 놀자 서비스 <span class="family-arrow">▾</span>',
         '</button>',
         '<div class="family-dropdown" id="family-dropdown">',
         '  <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>',
