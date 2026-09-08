@@ -107,6 +107,10 @@ function foot(depth) {
   <p>자매 사이트 <a href="https://hanja.chatgpts.kr/" rel="noopener">한자야 놀자!</a></p>
 </footer>
 </div>
+
+<!-- 화면 조회 로그 수집 (관리자 통계 전용 / 사용자 기능과 무관) -->
+<script defer src="/js/supabase-config.js"></script>
+<script defer src="/js/track.js" data-service="mindtest"></script>
 </body>
 </html>
 `;
