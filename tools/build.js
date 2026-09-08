@@ -78,7 +78,7 @@ function head(o) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}css/style.css?v=20260908c">
+<link rel="stylesheet" href="${up}css/style.css?v=20260909b">
 
 <!-- 구글 애드센스 (자동 광고). 이 사이트는 일반 대상이므로 tfat 파라미터를 쓰지 않는다. -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
@@ -109,8 +109,8 @@ function foot(depth) {
 </div>
 
 <!-- 화면 조회 로그 수집 (관리자 통계 전용 / 사용자 기능과 무관) -->
-<script defer src="/js/supabase-config.js?v=20260908c"></script>
-<script defer src="/js/track.js?v=20260908c" data-service="mindtest"></script>
+<script defer src="/js/supabase-config.js?v=20260909b"></script>
+<script defer src="/js/track.js?v=20260909b" data-service="mindtest"></script>
 </body>
 </html>
 `;
@@ -279,7 +279,7 @@ ${showGrade ? `<span class="q-grade" id="qgrade"></span>\n` : ''}<p class="q-tex
   <p class="lede">이 테스트는 자바스크립트가 필요합니다. 브라우저 설정에서 자바스크립트를 켜 주세요.</p>
 </noscript>
 
-<script src="js/data-${t.id}.js?v=20260908c"></script>
+<script src="js/data-${t.id}.js?v=20260909b"></script>
 <script src="js/${engine}"></script>
 ` + foot(0);
 

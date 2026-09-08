@@ -349,6 +349,7 @@
         '  <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>',
         '  <a href="https://voca.chatgpts.kr" target="_blank" rel="noopener"><span>⚡</span> <span>단어야 놀자</span></a>',
         '  <a href="https://fortune.chatgpts.kr" target="_blank" rel="noopener"><span>🔮</span> <span>운세야 놀자</span></a>',
+        '  <a href="https://bible.chatgpts.kr" target="_blank" rel="noopener"><span>✝️</span> <span>성경아 놀자</span></a>',
         '  <a href="https://chatgpts.kr" target="_blank" rel="noopener"><span>🏠</span> <span>chatgpts.kr</span></a>',
         '</div>'
       ].join('');
