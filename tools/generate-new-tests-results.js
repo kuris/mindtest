@@ -14,7 +14,7 @@ const SLANG = require(path.join(ROOT, 'js/data-slang.js'));
 const MONEY = require(path.join(ROOT, 'js/data-money.js'));
 
 const SITE = '마인드테스트';
-const BASE = 'https://mindtest.chatgpts.kr';
+const BASE = 'https://mind.chatgpts.kr';
 const ADS_CLIENT = 'ca-pub-3321070604000141';
 
 function esc(s) {

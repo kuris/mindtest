@@ -37,8 +37,20 @@
           "value": "mindtestkorea.vercel.app"
         }
       ],
-      "destination": "https://mindtest.chatgpts.kr/$1",
+      "destination": "https://mind.chatgpts.kr/$1",
       "permanent": false
+    },
+    {
+      "_comment": "대표 주소를 mind.chatgpts.kr 로 정했습니다. 예전 주소로 들어온 방문자와 이미 색인된 URL 이 새 주소로 넘어가도록 301 로 보냅니다. robots.txt / sitemap.xml 은 옛 주소에서도 그대로 읽히게 남겨 둡니다.",
+      "source": "/((?!ads\\.txt|robots\\.txt|sitemap\\.xml).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "mindtest.chatgpts.kr"
+        }
+      ],
+      "destination": "https://mind.chatgpts.kr/$1",
+      "permanent": true
     }
   ]
 }

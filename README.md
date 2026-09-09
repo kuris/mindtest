@@ -1,9 +1,9 @@
-# 마인드테스트 (mindtest.chatgpts.kr)
+# 마인드테스트 (mind.chatgpts.kr)
 
 모바일 우선 **정적 심리테스트 사이트**. 백엔드 없음, 프레임워크 없음, 빌드 단계 없음.
 바닐라 HTML/CSS/JS 파일을 Vercel에 그대로 올리면 끝난다.
 
-- 배포 도메인: `https://mindtest.chatgpts.kr`
+- 배포 도메인: `https://mind.chatgpts.kr`
 - Vercel 프로젝트: `mindtestkorea` → 임시 주소 `https://mindtestkorea.vercel.app`
 - 자매 사이트: [한자야 놀자!](https://hanja.chatgpts.kr/) (`kuris/playhanja`)
 
@@ -55,7 +55,7 @@ node tools/build.js      # HTML 31개 + sitemap.xml 재생성
 
 1. ✅ Vercel Import 완료 (**Framework Preset: Other**, 빌드 명령 없음, 출력 디렉터리 루트)
 2. ✅ `https://mindtestkorea.vercel.app` 배포 확인
-3. ✅ Vercel Settings → Domains 에 `mindtest.chatgpts.kr` 연결 완료
+3. ✅ Vercel Settings → Domains 에 `mind.chatgpts.kr` 연결 완료
 4. ✅ 가비아 DNS CNAME 추가 완료 (`mindtest` → `b26a709302b2b2ec.vercel-dns-017.com.`)
 5. Settings → Analytics 에서 **Web Analytics 활성화** (스크립트 태그는 이미 전 페이지에 들어있음)
 
@@ -68,7 +68,7 @@ My가비아 → 서비스관리 → 도메인 `chatgpts.kr` → **DNS 정보 →
 |---|---|---|---|
 | CNAME | `mindtest` | Vercel Domains 화면이 알려주는 값 (`xxxxxxxx.vercel-dns-017.com.`) | 3600 |
 
-- 호스트는 `mindtest` 만 (`mindtest.chatgpts.kr` 전체를 넣지 말 것)
+- 호스트는 `mindtest` 만 (`mind.chatgpts.kr` 전체를 넣지 말 것)
 - **값 끝에 마침표(`.`)를 반드시 찍는다.** 가비아는 이게 없으면 뒤에 도메인을 덧붙여버린다
 - ⚠️ 이 CNAME 값은 **프로젝트마다 다르다.** 자매 사이트 `hanja.chatgpts.kr` 의 값
   (`7bdb8adc32f44e3d.vercel-dns-017.com`)을 복사해 쓰면 안 된다.
@@ -77,8 +77,8 @@ My가비아 → 서비스관리 → 도메인 `chatgpts.kr` → **DNS 정보 →
 확인:
 
 ```bash
-dig +short CNAME mindtest.chatgpts.kr     # 위에서 넣은 값이 나오면 성공
-curl -sI https://mindtest.chatgpts.kr | head -1
+dig +short CNAME mind.chatgpts.kr     # 위에서 넣은 값이 나오면 성공
+curl -sI https://mind.chatgpts.kr | head -1
 ```
 
 가비아 DNS는 보통 10분 안에 반영되지만 최대 1시간까지 걸릴 수 있다.
@@ -97,7 +97,7 @@ Vercel Domains 화면의 상태가 `Valid Configuration` 으로 바뀌고 HTTPS 
   {
     "source": "/((?!ads\\.txt|robots\\.txt|sitemap\\.xml).*)",
     "has": [{ "type": "host", "value": "mindtestkorea.vercel.app" }],
-    "destination": "https://mindtest.chatgpts.kr/$1",
+    "destination": "https://mind.chatgpts.kr/$1",
     "permanent": false
   }
 ]

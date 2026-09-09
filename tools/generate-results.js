@@ -248,19 +248,19 @@ function makeBurnoutResult(g) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>번아웃 수치: ${g.name} - 번아웃 자가진단 테스트</title>
 <meta name="description" content="${g.summary} ${g.desc.slice(0, 80)}…">
-<link rel="canonical" href="https://mindtest.chatgpts.kr/result/burnout-${g.slug}.html">
+<link rel="canonical" href="https://mind.chatgpts.kr/result/burnout-${g.slug}.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E🧠%3C%2Ftext%3E%3C%2Fsvg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="마인드테스트">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="내 번아웃 수치 — ${g.emoji} ${g.name}! - 번아웃 자가진단 테스트">
 <meta property="og:description" content="${g.summary}">
-<meta property="og:image" content="https://mindtest.chatgpts.kr/og/burnout-${g.slug}.png">
-<meta property="og:url" content="https://mindtest.chatgpts.kr/result/burnout-${g.slug}.html">
+<meta property="og:image" content="https://mind.chatgpts.kr/og/burnout-${g.slug}.png">
+<meta property="og:url" content="https://mind.chatgpts.kr/result/burnout-${g.slug}.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="내 번아웃 수치 — ${g.emoji} ${g.name}! - 번아웃 자가진단 테스트">
 <meta name="twitter:description" content="${g.summary}">
-<meta name="twitter:image" content="https://mindtest.chatgpts.kr/og/burnout-${g.slug}.png">
+<meta name="twitter:image" content="https://mind.chatgpts.kr/og/burnout-${g.slug}.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
@@ -332,19 +332,19 @@ function makeDigitalResult(g) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>디지털 의존도: ${g.name} - 디지털 중독 자가진단 테스트</title>
 <meta name="description" content="${g.summary} ${g.desc.slice(0, 80)}…">
-<link rel="canonical" href="https://mindtest.chatgpts.kr/result/digital-${g.slug}.html">
+<link rel="canonical" href="https://mind.chatgpts.kr/result/digital-${g.slug}.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E📱%3C%2Ftext%3E%3C%2Fsvg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="마인드테스트">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="내 디지털 중독 수치 — ${g.emoji} ${g.name}! - 디지털 중독 자가진단 테스트">
 <meta property="og:description" content="${g.summary}">
-<meta property="og:image" content="https://mindtest.chatgpts.kr/og/digital-${g.slug}.png">
-<meta property="og:url" content="https://mindtest.chatgpts.kr/result/digital-${g.slug}.html">
+<meta property="og:image" content="https://mind.chatgpts.kr/og/digital-${g.slug}.png">
+<meta property="og:url" content="https://mind.chatgpts.kr/result/digital-${g.slug}.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="내 디지털 중독 수치 — ${g.emoji} ${g.name}! - 디지털 중독 자가진단 테스트">
 <meta name="twitter:description" content="${g.summary}">
-<meta name="twitter:image" content="https://mindtest.chatgpts.kr/og/digital-${g.slug}.png">
+<meta name="twitter:image" content="https://mind.chatgpts.kr/og/digital-${g.slug}.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
@@ -416,19 +416,19 @@ function makeTMIResult(t) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>나는 ${t.name} - 나의 TMI 유형 테스트</title>
 <meta name="description" content="${t.summary} ${t.desc.slice(0, 80)}…">
-<link rel="canonical" href="https://mindtest.chatgpts.kr/result/tmi-${t.slug}.html">
+<link rel="canonical" href="https://mind.chatgpts.kr/result/tmi-${t.slug}.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E🗣️%3C%2Ftext%3E%3C%2Fsvg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="마인드테스트">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="나는 ${t.emoji} ${t.name}! - 나의 TMI 유형 테스트">
 <meta property="og:description" content="${t.summary}">
-<meta property="og:image" content="https://mindtest.chatgpts.kr/og/tmi-${t.slug}.png">
-<meta property="og:url" content="https://mindtest.chatgpts.kr/result/tmi-${t.slug}.html">
+<meta property="og:image" content="https://mind.chatgpts.kr/og/tmi-${t.slug}.png">
+<meta property="og:url" content="https://mind.chatgpts.kr/result/tmi-${t.slug}.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="나는 ${t.emoji} ${t.name}! - 나의 TMI 유형 테스트">
 <meta name="twitter:description" content="${t.summary}">
-<meta name="twitter:image" content="https://mindtest.chatgpts.kr/og/tmi-${t.slug}.png">
+<meta name="twitter:image" content="https://mind.chatgpts.kr/og/tmi-${t.slug}.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mindtest.chatgpts.kr/sitemap.xml
+Sitemap: https://mind.chatgpts.kr/sitemap.xml

@@ -1,4 +1,4 @@
-# 마인드테스트 (mindtest.chatgpts.kr) 프로젝트 계획
+# 마인드테스트 (mind.chatgpts.kr) 프로젝트 계획
 
 > 2026-09-03 확정 · 다음 날 repo 생성 예정
 > 한자야 놀자!(hanja.chatgpts.kr)와 반대 성격(공유·바이럴)의 사이트로 포트폴리오 보완
@@ -9,7 +9,7 @@
 
 | 항목 | 내용 |
 |---|---|
-| 도메인 | `mindtest.chatgpts.kr` (chatgpts.kr 서브도메인 → 애드센스 심사 없이 즉시 게재) |
+| 도메인 | `mind.chatgpts.kr` (chatgpts.kr 서브도메인 → 애드센스 심사 없이 즉시 게재) |
 | 사이트명 | 마인드테스트 |
 | 저장소 | **별도 repo** + 별도 Vercel 프로젝트 (playhanja와 분리) |
 | 스택 | 정적 HTML + JS, 백엔드 없음, 모바일 우선 |

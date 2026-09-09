@@ -13,7 +13,7 @@
 
 | 항목 | 값 |
 |---|---|
-| 배포 도메인 | `https://mindtest.chatgpts.kr` |
+| 배포 도메인 | `https://mind.chatgpts.kr` |
 | 사이트명 | 마인드테스트 |
 | 언어 | 한국어 (UI·콘텐츠 전부) |
 | 대상 | 모바일 사용자 우선, 데스크톱 대응 |
@@ -72,8 +72,8 @@ mindtest/
   ```html
   <meta property="og:title" content="나는 [결과명]! - [테스트명]">
   <meta property="og:description" content="[결과 한 줄 요약]">
-  <meta property="og:image" content="https://mindtest.chatgpts.kr/og/[slug].png">
-  <meta property="og:url" content="https://mindtest.chatgpts.kr/result/[파일명]">
+  <meta property="og:image" content="https://mind.chatgpts.kr/og/[slug].png">
+  <meta property="og:url" content="https://mind.chatgpts.kr/result/[파일명]">
   ```
   (OG 이미지 파일 제작은 별도 작업 — 태그만 먼저 심어 둘 것)
 

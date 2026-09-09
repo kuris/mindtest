@@ -1,6 +1,6 @@
 # OG 이미지 (1200×630)
 
-결과 페이지의 `og:image` 는 `https://mindtest.chatgpts.kr/og/<slug>.png` 를 가리킨다.
+결과 페이지의 `og:image` 는 `https://mind.chatgpts.kr/og/<slug>.png` 를 가리킨다.
 카카오톡·인스타에 공유될 때 뜨는 카드가 이 사이트 마케팅의 전부이므로, 이 폴더를 채우는 게
 배포 직후 가장 우선순위 높은 작업이다.
 

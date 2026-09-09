@@ -428,7 +428,7 @@
       ctx.fillStyle = '#ffffff';
       ctx.font = 'bold 28px "Jua", "Gowun Dodum", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('👉  너도 해봐! mindtest.chatgpts.kr', w / 2, footY + 43);
+      ctx.fillText('👉  너도 해봐! mind.chatgpts.kr', w / 2, footY + 43);
 
       // 최하단 카피라이트
       ctx.fillStyle = '#9ca3af';
