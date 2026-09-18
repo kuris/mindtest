@@ -39,10 +39,11 @@
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js?v=20260909e"></script>
   <link rel="stylesheet" href="css/cg-auth.css?v=20260909e">
+  <link rel="stylesheet" href="css/cg-family.css?v=20260909e">
 </head>
 <body data-theme="money">
 <div class="wrap">
-<header class="site-head"><a href="index.html">마인드<span class="dot">테스트</span></a></header>
+<header class="site-head"><a href="index.html">마인드<span class="dot">테스트</span></a><div class="site-head-actions" id="head-actions-sub"><div data-cg-family data-current="mind"></div></div></header>
 <h1 class="test-title">💸 소비 성향 테스트</h1>
 
 <div class="progress"><div class="progress-bar" id="bar"></div></div>
@@ -74,6 +75,7 @@
 <!-- 공통 Google 로그인 (CGAuth) - 비로그인 사용자의 기존 기능에는 영향이 없습니다 -->
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script defer src="js/cg-auth.js?v=20260909e" data-service="mindtest" data-mount=".site-head" data-mount-mode="append"></script>
+<script defer src="js/cg-family.js?v=20260909e"></script>
 <script defer src="js/mindtest-sync.js?v=20260909e"></script>
 </body>
 </html>

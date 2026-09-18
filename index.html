@@ -39,29 +39,14 @@
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js?v=20260909e"></script>
   <link rel="stylesheet" href="css/cg-auth.css?v=20260909e">
+  <link rel="stylesheet" href="css/cg-family.css?v=20260909e">
 </head>
 <body>
 <div class="wrap">
 <header class="site-head">
   <a href="index.html">마인드<span class="dot">테스트</span></a>
   <div class="site-head-actions" id="head-actions">
-    <div class="family-nav-wrap">
-      <button type="button" class="family-btn" id="family-btn">
-        다른 놀자 서비스 <span class="family-arrow">▾</span>
-      </button>
-      <div class="family-dropdown" id="family-dropdown">
-        <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>
-        <a href="https://voca.chatgpts.kr" target="_blank" rel="noopener"><span>⚡</span> <span>단어야 놀자</span></a>
-        <a href="https://fortune.chatgpts.kr" target="_blank" rel="noopener"><span>🔮</span> <span>운세야 놀자</span></a>
-        <a href="https://history.chatgpts.kr" target="_blank" rel="noopener"><span>📜</span> <span>역사야 놀자</span></a>
-        <a href="https://work.chatgpts.kr" target="_blank" rel="noopener"><span>💼</span> <span>워크야 놀자</span></a>
-        <a href="https://money.chatgpts.kr" target="_blank" rel="noopener"><span>💰</span> <span>머니야 놀자</span></a>
-        <a href="https://tools.chatgpts.kr" target="_blank" rel="noopener"><span>🛠️</span> <span>문서야 놀자</span></a>
-        <a href="https://bible.chatgpts.kr" target="_blank" rel="noopener"><span>✝️</span> <span>성경아 놀자</span></a>
-        <a href="https://maum.chatgpts.kr" target="_blank" rel="noopener"><span>🪷</span> <span>마음아 놀자</span></a>
-        <a href="https://chatgpts.kr" target="_blank" rel="noopener"><span>🏠</span> <span>chatgpts.kr</span></a>
-      </div>
-    </div>
+    <div data-cg-family data-current="mind"></div>
   </div>
 </header>
 <h1 class="test-title" style="font-size:26px;color:var(--ink);font-weight:700;margin-bottom:6px;">3분이면 끝나는 심리테스트</h1>
@@ -201,6 +186,4 @@
 <!-- 공통 Google 로그인 (CGAuth) - 비로그인 사용자의 기존 기능에는 영향이 없습니다 -->
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script defer src="js/cg-auth.js?v=20260909e" data-service="mindtest" data-mount="#head-actions" data-mount-mode="prepend"></script>
-<script defer src="js/mindtest-sync.js?v=20260909e"></script>
-</body>
-</html>
+<script defer src="js/cg-family.js?v=20260909e"></script>

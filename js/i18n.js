@@ -336,29 +336,18 @@
       head.appendChild(actions);
     }
 
-    // 8-1. 패밀리 서비스 드롭다운
-    var famWrap = actions.querySelector('.family-nav-wrap');
+    // 8-1. 패밀리 서비스 드롭다운 (cg-family.js 공유 모듈 사용 — 정적 컨테이너가 있으면 스킵)
+    var famWrap = actions.querySelector('[data-cg-family]');
     if (!famWrap) {
       famWrap = document.createElement('div');
-      famWrap.className = 'family-nav-wrap';
-      famWrap.innerHTML = [
-        '<button type="button" class="family-btn" id="family-btn">',
-        '  다른 놀자 서비스 <span class="family-arrow">▾</span>',
-        '</button>',
-        '<div class="family-dropdown" id="family-dropdown">',
-        '  <a href="https://hanja.chatgpts.kr" target="_blank" rel="noopener"><span>📖</span> <span>한자야 놀자</span></a>',
-        '  <a href="https://voca.chatgpts.kr" target="_blank" rel="noopener"><span>⚡</span> <span>단어야 놀자</span></a>',
-        '  <a href="https://fortune.chatgpts.kr" target="_blank" rel="noopener"><span>🔮</span> <span>운세야 놀자</span></a>',
-        '  <a href="https://bible.chatgpts.kr" target="_blank" rel="noopener"><span>✝️</span> <span>성경아 놀자</span></a>',
-        '  <a href="https://maum.chatgpts.kr" target="_blank" rel="noopener"><span>🪷</span> <span>마음아 놀자</span></a>',
-        '  <a href="https://chatgpts.kr" target="_blank" rel="noopener"><span>🏠</span> <span>chatgpts.kr</span></a>',
-        '</div>'
-      ].join('');
+      famWrap.setAttribute('data-cg-family', '');
+      famWrap.setAttribute('data-current', 'mind');
       actions.insertBefore(famWrap, actions.firstChild);
+      if (window.CGFamily) window.CGFamily.renderInto(famWrap, { current: 'mind' });
     }
 
-    var famBtn = famWrap.querySelector('#family-btn');
-    var famDrop = famWrap.querySelector('#family-dropdown');
+    var famBtn = famWrap.querySelector('.cg-fam-btn, #family-btn');
+    var famDrop = famWrap.querySelector('.cg-fam-panel, #family-dropdown');
 
     // 8-2. 언어 스위처
     var wrapper = document.createElement('div');
@@ -377,17 +366,23 @@
     dropdown.setAttribute('role', 'listbox');
     dropdown.hidden = true;
 
+    if (famBtn && famDrop) {
     famBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      var willOpen = !famDrop.classList.contains('show');
+      // cg-family 자체 토글(.open)과 구 토글(.show) 모두 지원
+      var wrap = famWrap.querySelector('.cg-fam-wrap');
+      if (wrap) {
+        var open = wrap.classList.toggle('open');
+        famBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      } else {
+        var willOpen = !famDrop.classList.contains('show');
+        if (willOpen) famDrop.classList.add('show');
+        else famDrop.classList.remove('show');
+      }
       dropdown.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
-      if (willOpen) {
-        famDrop.classList.add('show');
-      } else {
-        famDrop.classList.remove('show');
-      }
     });
+    }
 
     var allLangs = ['ko', 'en', 'ja', 'zh', 'es', 'pt'];
     allLangs.forEach(function (l) {
@@ -421,7 +416,9 @@
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      famDrop.classList.remove('show');
+      if (famDrop) famDrop.classList.remove('show');
+      var wrap = famWrap.querySelector('.cg-fam-wrap');
+      if (wrap) { wrap.classList.remove('open'); if (famBtn) famBtn.setAttribute('aria-expanded', 'false'); }
       var open = !dropdown.hidden;
       dropdown.hidden = open;
       btn.setAttribute('aria-expanded', String(!open));
@@ -430,7 +427,9 @@
     document.addEventListener('click', function () {
       dropdown.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
-      famDrop.classList.remove('show');
+      if (famDrop) famDrop.classList.remove('show');
+      var wrap = famWrap.querySelector('.cg-fam-wrap');
+      if (wrap) { wrap.classList.remove('open'); if (famBtn) famBtn.setAttribute('aria-expanded', 'false'); }
     });
 
     wrapper.appendChild(btn);
